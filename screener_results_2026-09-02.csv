@@ -1,0 +1,75 @@
+Ticker,Final_Grade,Floor Tier,Status,Close Price,FCF_Yield,ROA,EV_EBITDA
+LULU,87.3,🟢🟢 Deep Floor,Confirmed (Prior Month),120.26,0.08316899942335114,0.16045,5.464
+ACN,78.0,🟢🟢 Deep Floor,Confirmed (Prior Month),189.76,0.10526300585291198,0.10903,8.88
+EPAM,77.8,🟢🟢 Deep Floor,Confirmed (Prior Month),117.83,0.10753502198655182,0.08453,7.18
+CTSH,77.6,🟢 Oversold Floor,Confirmed (Prior Month),64.58,0.0775785178095662,0.10735,7.334
+SONY,76.9,⚪ Standard (< 0),Confirmed (Prior Month),24.56,23.22537102816939,0.042529996,0.121
+CMCSA,72.3,🟢 Oversold Floor,Confirmed (Prior Month),26.62,0.13346400151339274,0.043080002,5.172
+EXE,72.3,⚪ Standard (< 0),Live (Unfinished Month),99.32,0.06376952542212856,0.08486,3.877
+G,72.2,🟢 Oversold Floor,Confirmed (Prior Month),37.98,0.07610450924363492,0.091759995,8.222
+BEKE,71.5,⚪ Standard (< 0),Confirmed (Prior Month),17.19,0.21975351319547068,0.02567,-2.185
+VNT,71.2,⚪ Standard (< 0),Confirmed (Prior Month),32.21,0.07916227737779462,0.0863,8.547
+PPC,70.3,🟢 Oversold Floor,Live (Unfinished Month),31.12,0.06862748603665399,0.08015,5.723
+INGR,70.1,🟢🟢 Deep Floor,Confirmed (Prior Month),103.46,0.07066835385042687,0.07334,6.416
+STEP,68.9,⚪ Standard (< 0),Live (Unfinished Month),50.5,0.432992664416782,-0.11644,-5.993
+TAP,68.5,🟢 Oversold Floor,Confirmed (Prior Month),39.76,0.1237143683028903,0.03793,5.959
+GTM,68.4,🟢🟢 Deep Floor,Confirmed (Prior Month),4.24,0.29938726876169924,0.02918,7.586
+AGNT,68.0,🟢🟢 Deep Floor,Live (Unfinished Month),3.99,0.14824559479684674,-0.0141199995,-243.919
+BCE,68.0,⚪ Standard (< 0),Live (Unfinished Month),23.4,0.11927100520364649,0.04423,7.664
+NVR,67.4,🟢🟢 Deep Floor,Live (Unfinished Month),6326.95,0.05419523006117637,0.16547,10.882
+CI,66.4,⚪ Standard (< 0),Live (Unfinished Month),282.84,0.10677498480806868,0.04462,7.815
+PSKY,66.2,⚪ Standard (< 0),Live (Unfinished Month),10.97,1.429435302374967,0.027490001,8.293
+LDOS,65.5,⚪ Standard (< 0),Live (Unfinished Month),133.78,0.0682988600520248,0.089099996,9.802
+LKQ,65.4,🟢🟢 Deep Floor,Live (Unfinished Month),24.73,0.1157351644384158,0.03995,8.049
+NFLX,63.5,⚪ Standard (< 0),Live (Unfinished Month),82.73,0.07369760412541726,0.16084999,23.36
+GPOR,63.1,⚪ Standard (< 0),Live (Unfinished Month),180.45,0.03196593157285412,0.14116,4.117
+MAT,62.6,🟢 Oversold Floor,Live (Unfinished Month),14.64,0.10168578983746886,0.04731,9.802
+UHS,62.4,⚪ Standard (< 0),Confirmed (Prior Month),170.13,0.05048151208531939,0.08321,5.678
+PTC,62.0,🟢 Oversold Floor,Confirmed (Prior Month),155.74,0.06374085298423614,0.11537,13.979
+INTU,61.9,🟢🟢 Deep Floor,Confirmed (Prior Month),359.3,0.06863709360290343,0.1047,13.785
+OTIS,61.1,🟢🟢 Deep Floor,Confirmed (Prior Month),71.13,0.05326781359674025,0.14249,13.334
+INFY,61.1,🟢🟢 Deep Floor,Confirmed (Prior Month),12.06,0.06529474197744829,0.15297,21.206
+NX,60.7,⚪ Standard (< 0),Confirmed (Prior Month),19.22,0.094977358972798,0.030380001,8.105
+EPAC,59.1,🟢 Oversold Floor,Confirmed (Prior Month),37.32,0.05469939041514602,0.10475001,12.491
+OPCH,58.9,⚪ Standard (< 0),Confirmed (Prior Month),23.45,0.07167994651513529,0.061690003,11.386
+BR,58.6,🟢 Oversold Floor,Confirmed (Prior Month),182.38,0.05883447674762277,0.09295,13.093
+PEGA,55.9,⚪ Standard (< 0),Live (Unfinished Month),37.32,0.08269812382427653,0.0907,27.375
+SNY,55.7,🟢 Oversold Floor,Confirmed (Prior Month),44.36,0.05911432364448017,0.05093,9.149
+ADSK,55.4,⚪ Standard (< 0),Confirmed (Prior Month),258.53,0.06249805928427458,0.11472999,22.448
+MZTI,54.6,🟢🟢 Deep Floor,Confirmed (Prior Month),112.65,0.043687876132297666,0.10298,10.749
+DOCS,50.4,⚪ Standard (< 0),Confirmed (Prior Month),26.71,0.05109393986090518,0.10949001,19.257
+HLNE,50.3,🟢🟢 Deep Floor,Confirmed (Prior Month),108.82,0.040647259115894896,0.10783,13.509
+CPRT,48.5,🟢🟢 Deep Floor,Confirmed (Prior Month),32.99,0.03358547440376285,0.11336,13.24
+ALG,47.0,⚪ Standard (< 0),Live (Unfinished Month),171.31,0.043810264516970676,0.05638,10.575
+GEHC,46.4,⚪ Standard (< 0),Confirmed (Prior Month),71.23,0.049359165838688365,0.05131,11.275
+DLB,45.4,🟢🟢 Deep Floor,Confirmed (Prior Month),61.56,0.05733548254746186,0.05152,14.589
+PBH,45.4,🟢🟢 Deep Floor,Confirmed (Prior Month),51.78,0.0590889158002309,0.04578,13.745
+LEN,45.0,🟢🟢 Deep Floor,Live (Unfinished Month),83.58,0.053537559065338004,0.03943,10.794
+RMD,43.1,⚪ Standard (< 0),Confirmed (Prior Month),240.1,0.028202664128727694,0.14002,15.618
+BAM,42.6,⚪ Standard (< 0),Confirmed (Prior Month),51.5,0.03370969541867232,0.13036999,22.526
+JKHY,42.2,⚪ Standard (< 0),Confirmed (Prior Month),167.91,0.03007655183425183,0.12989001,16.878
+NKE,41.5,🟢🟢 Deep Floor,Confirmed (Prior Month),38.65,0.03330307699316931,0.06971,11.882
+LYFT,40.5,⚪ Standard (< 0),Confirmed (Prior Month),16.9,0.1755773168976901,-0.0086199995,125.464
+SBAC,38.8,⚪ Standard (< 0),Live (Unfinished Month),186.42,0.03802692171517593,0.08406,19.087
+UBER,38.8,⚪ Standard (< 0),Live (Unfinished Month),76.45,0.04639499049719092,0.06877,21.957
+STE,38.1,⚪ Standard (< 0),Confirmed (Prior Month),232.64,0.035569576016996673,0.06797,14.61
+TRMB,37.6,⚪ Standard (< 0),Live (Unfinished Month),59.11,0.04978321297245252,0.04804,17.03
+BSX,37.2,🟢🟢 Deep Floor,Confirmed (Prior Month),48.3,0.034970071409080365,0.06191,14.359
+OLED,35.9,🟢🟢 Deep Floor,Confirmed (Prior Month),83.17,0.02911675548935334,0.06767,13.168
+UFPI,35.9,🟢 Oversold Floor,Confirmed (Prior Month),84.16,0.02577742731905148,0.04756,9.11
+CHWY,35.3,🟢 Oversold Floor,Confirmed (Prior Month),23.8,0.04681539965955597,0.06008,24.33
+ADMA,34.6,🟢🟢 Deep Floor,Confirmed (Prior Month),9.39,0.025705610814787876,0.2178,195.534
+DIS,34.1,⚪ Standard (< 0),Confirmed (Prior Month),107.55,0.026068308209712912,0.048070002,11.023
+LNN,33.8,⚪ Standard (< 0),Live (Unfinished Month),120.11,0.03386330247140321,0.04664,13.654
+SAP,33.8,⚪ Standard (< 0),Confirmed (Prior Month),220.89,0.03756066782245377,0.0954,293.011
+KAI,32.6,⚪ Standard (< 0),Confirmed (Prior Month),299.14,0.03034178970232394,0.06787,15.97
+SPOT,32.3,⚪ Standard (< 0),Confirmed (Prior Month),543.62,0.013403776201338894,0.12186,39.266
+COIN,27.7,⚪ Standard (< 0),Live (Unfinished Month),174.96,0.057807628276535586,0.01116,63.657
+ICE,27.3,⚪ Standard (< 0),Confirmed (Prior Month),160.7,0.041004107457264675,0.02172,16.258
+ARLO,21.2,⚪ Standard (< 0),Confirmed (Prior Month),13.15,0.04597041622788434,0.0136899995,84.113
+FRPT,17.2,⚪ Standard (< 0),Confirmed (Prior Month),69.86,0.005667477402218677,0.03486,18.18
+CSGP,14.2,🟢🟢 Deep Floor,Confirmed (Prior Month),32.07,0.03258206535987764,0.00466,32.64
+GWRE,9.7,⚪ Standard (< 0),Confirmed (Prior Month),204.75,0.017643661356681443,0.02915,127.451
+CLF,6.9,⚪ Standard (< 0),Confirmed (Prior Month),11.55,0.0008643673998213735,-0.01706,28.06
+CG,6.7,⚪ Standard (< 0),Confirmed (Prior Month),48.39,0.0,0.02031,100.0
+APO,5.5,⚪ Standard (< 0),Confirmed (Prior Month),136.58,0.0,0.0094099995,100.0

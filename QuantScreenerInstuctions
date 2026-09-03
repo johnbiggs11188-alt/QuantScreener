@@ -1,0 +1,43 @@
+1. **Open Terminal:**
+Open the Terminal application on your Mac.
+
+
+2. **Navigate to your project directory:**
+Type this command and press **Return**:
+
+
+cd Desktop/QuantScreener
+
+
+
+3. **Clear the screen:**
+Type this command and press **Return** to wipe the terminal window clean:
+
+
+clear
+
+
+
+4. **Activate your virtual environment:**
+Type this command and press **Return**:
+
+
+source venv/bin/activate
+
+
+
+5. **Run the scanner:**
+Type this command and press **Return** to kick off the monthly and weekly data pulls and fundamental grading:
+
+
+python scanner.py
+
+
+
+Once the script finishes executing and prints out that the files have been saved, you can launch your local dashboard by typing:
+
+
+streamlit run app.py
+
+
+

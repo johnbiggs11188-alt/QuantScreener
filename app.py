@@ -16,30 +16,30 @@ def load_latest_results(timeframe):
 
 monthly_data, monthly_file = load_latest_results("monthly")
 weekly_data, weekly_file = load_latest_results("weekly")
+daily_data, daily_file = load_latest_results("daily")
 
-if monthly_data is None and weekly_data is None:
-    st.warning("No overnight scans found. Run `python scanner.py` in your terminal first.")
+if monthly_data is None and weekly_data is None and daily_data is None:
+    st.warning("No scans found. Run `python scanner.py` in your terminal.")
     st.stop()
 
-# --- SIDEBAR FILTERS ---
 st.sidebar.header("Filter Setup")
 min_grade = st.sidebar.slider("Minimum Quant Grade", min_value=0, max_value=100, value=70, step=5)
 
-# Dynamically pull available filters based on what survived
 all_tiers = set()
 all_statuses = set()
-if monthly_data is not None:
-    all_tiers.update(monthly_data['Floor Tier'].unique())
-    all_statuses.update(monthly_data['Status'].unique())
-if weekly_data is not None:
-    all_tiers.update(weekly_data['Floor Tier'].unique())
-    all_statuses.update(weekly_data['Status'].unique())
+for df in [monthly_data, weekly_data, daily_data]:
+    if df is not None:
+        all_tiers.update(df['Floor Tier'].unique())
+        all_statuses.update(df['Status'].unique())
 
 selected_tier = st.sidebar.multiselect("Technical Floor Tier:", options=list(all_tiers), default=list(all_tiers))
 selected_status = st.sidebar.multiselect("Signal Status:", options=list(all_statuses), default=list(all_statuses))
 
-# --- TABS SETUP ---
-tab1, tab2 = st.tabs(["📅 Monthly Outlook", "🗓️ Weekly Outlook (Deep & Oversold Only)"])
+tab1, tab2, tab3 = st.tabs([
+    "📅 Monthly Outlook", 
+    "🗓️ Weekly (Deep & Oversold)", 
+    "🟢 Daily Signals (Gold & Strong Green)"
+])
 
 def render_dashboard(df, filename, tab_title):
     if df is None:
@@ -84,3 +84,6 @@ with tab1:
     
 with tab2:
     render_dashboard(weekly_data, weekly_file, "Weekly")
+
+with tab3:
+    render_dashboard(daily_data, daily_file, "Daily Signals")

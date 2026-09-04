@@ -6,12 +6,12 @@ import os
 st.set_page_config(page_title="Global Quant Screener", page_icon="📈", layout="wide")
 st.title("📈 Global Quant Screener")
 
-@st.cache_data
 def load_latest_results(timeframe):
     list_of_files = glob.glob(f'screener_results_{timeframe}_*.csv')
     if not list_of_files:
         return None, None
-    latest_file = max(list_of_files, key=os.path.getctime)
+    # Sort alphabetically so YYYY-MM-DD forces the newest date to the very end of the list
+    latest_file = sorted(list_of_files)[-1] 
     return pd.read_csv(latest_file), latest_file
 
 monthly_data, monthly_file = load_latest_results("monthly")

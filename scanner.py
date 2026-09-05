@@ -201,8 +201,8 @@ if __name__ == "__main__":
 
                 if timeframe == "Daily":
                     # 1. Gold Dot rules
-                    live_gold = live_cross and (wt1_now <= -80) and (rsi_now < 20) and check_bullish_divergence(df, wt1, offset=0)
-                    posted_gold = confirmed_cross and (wt1_1ago <= -80) and (rsi_1ago < 20) and check_bullish_divergence(df, wt1, offset=1)
+                    live_gold = live_cross and (wt1_now <= -80) and (rsi_now < 30) and check_bullish_divergence(df, wt1, offset=0)
+                    posted_gold = confirmed_cross and (wt1_1ago <= -80) and (rsi_1ago < 30) and check_bullish_divergence(df, wt1, offset=1)
                     
                     # 2. Strong Green Dot rules: cross up below -60
                     live_strong = live_cross and (wt1_now <= -60)

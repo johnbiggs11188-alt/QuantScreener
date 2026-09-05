@@ -1,7 +1,7 @@
 Ticker,Final_Grade,Floor Tier,Status,Close Price,FCF_Yield,ROA,EV_EBITDA
 LULU,89.3,🟢🟢 Deep Floor,Confirmed (Previous),120.26,0.10311192596517794,0.14401,4.988
 CTSH,80.1,🟢 Oversold Floor,Confirmed (Previous),64.58,0.07893561052656618,0.10735,7.213
-ACN,79.5,🟢🟢 Deep Floor,Confirmed (Previous),189.76,0.10580419655122747,0.10903,8.815
+ACN,79.1,🟢🟢 Deep Floor,Confirmed (Previous),189.76,0.10580419655122747,0.10903,8.815
 EPAM,78.5,🟢🟢 Deep Floor,Confirmed (Previous),117.83,0.10768202879789045,0.08453,7.364
 SONY,76.8,⚪ Standard (< 0),Confirmed (Previous),24.56,23.35681621780619,0.042529996,0.12
 G,73.9,🟢 Oversold Floor,Confirmed (Previous),37.98,0.07645118863839809,0.091759995,8.297
@@ -9,11 +9,11 @@ EXE,73.1,⚪ Standard (< 0),Live (Unfinished),97.91,0.06468786946093771,0.08486,
 PPC,72.9,🟢 Oversold Floor,Live (Unfinished),30.48,0.07006848479615162,0.08015,5.641
 INGR,72.9,🟢🟢 Deep Floor,Confirmed (Previous),103.46,0.07160352514916961,0.07334,6.254
 CMCSA,72.3,🟢 Oversold Floor,Confirmed (Previous),26.62,0.1350762434201657,0.043080002,5.192
-VNT,72.0,⚪ Standard (< 0),Confirmed (Previous),32.19,0.07721293820816144,0.0863,8.829
+VNT,71.6,⚪ Standard (< 0),Confirmed (Previous),32.19,0.07721293820816144,0.0863,8.829
 BEKE,71.5,⚪ Standard (< 0),Confirmed (Previous),17.19,0.22006580573908643,0.02567,-2.151
-TAP,68.9,🟢 Oversold Floor,Confirmed (Previous),39.76,0.1238365577316877,0.03793,6.02
 STEP,68.9,⚪ Standard (< 0),Live (Unfinished),50.92,0.4294212793469286,-0.11644,-6.084
 NVR,68.9,🟢🟢 Deep Floor,Live (Unfinished),6298.85,0.054437004481631864,0.16547,10.922
+TAP,68.5,🟢 Oversold Floor,Confirmed (Previous),39.76,0.1238365577316877,0.03793,6.02
 BCE,68.4,⚪ Standard (< 0),Live (Unfinished),23.67,0.11791049304508713,0.04423,7.693
 AGNT,68.0,🟢🟢 Deep Floor,Live (Unfinished),4.03,0.14677417048109284,-0.0141199995,-252.163
 GTM,68.0,🟢🟢 Deep Floor,Confirmed (Previous),4.24,0.29648763080164825,0.02918,7.595
@@ -36,8 +36,8 @@ MZTI,57.6,🟢🟢 Deep Floor,Confirmed (Previous),112.65,0.04616679850736305,0.
 SNY,57.1,🟢 Oversold Floor,Confirmed (Previous),44.36,0.059421652294394806,0.05093,9.126
 HLNE,52.4,🟢🟢 Deep Floor,Confirmed (Previous),108.82,0.04068670154581352,0.10783,13.517
 DOCS,52.0,⚪ Standard (< 0),Confirmed (Previous),26.71,0.051035768954636455,0.10949001,19.283
+NX,51.2,⚪ Standard (< 0),Confirmed (Previous),19.22,0.056987953421696054,0.038599998,8.697
 GEHC,49.5,⚪ Standard (< 0),Confirmed (Previous),71.23,0.050577730836524865,0.05131,11.079
-NX,49.5,⚪ Standard (< 0),Confirmed (Previous),19.22,0.05453692432310923,0.03633,9.006
 ALG,48.3,⚪ Standard (< 0),Live (Unfinished),173.56,0.04324231561064888,0.05638,10.709
 DLB,48.1,🟢🟢 Deep Floor,Confirmed (Previous),61.56,0.05717817574291906,0.05152,14.634
 CPRT,47.9,🟢🟢 Deep Floor,Confirmed (Previous),32.99,0.03203169578888934,0.11336,13.832
@@ -60,17 +60,17 @@ UFPI,36.4,🟢 Oversold Floor,Confirmed (Previous),84.16,0.0253283561521931,0.04
 ADMA,36.1,🟢🟢 Deep Floor,Confirmed (Previous),9.39,0.02541168097751625,0.2178,195.824
 DIS,35.5,⚪ Standard (< 0),Confirmed (Previous),107.55,0.026729240139612,0.048070002,11.1
 SAP,35.2,⚪ Standard (< 0),Confirmed (Previous),220.89,0.03661427370037594,0.0954,297.255
-SPOT,34.0,⚪ Standard (< 0),Confirmed (Previous),543.62,0.013822126156532338,0.12186,39.134
+SPOT,34.5,⚪ Standard (< 0),Confirmed (Previous),543.62,0.013822126156532338,0.12186,39.134
 KAI,33.9,⚪ Standard (< 0),Confirmed (Previous),299.14,0.029969067381754918,0.06787,16.278
 LNN,31.7,⚪ Standard (< 0),Live (Unfinished),123.39,0.03296313758040431,0.04664,14.688
-COIN,28.8,⚪ Standard (< 0),Live (Unfinished),184.64,0.05477698991883984,0.01116,66.606
+COIN,28.3,⚪ Standard (< 0),Live (Unfinished),184.64,0.05477698991883984,0.01116,66.606
 HLI,28.3,🟢 Oversold Floor,Live (Unfinished),137.11,0.0,0.11173,100.0
 ICE,27.9,⚪ Standard (< 0),Confirmed (Previous),160.7,0.040137039057619964,0.02172,16.397
 ARLO,20.9,⚪ Standard (< 0),Confirmed (Previous),13.15,0.04291010893757786,0.0136899995,94.523
-TMDX,17.3,⚪ Standard (< 0),Live (Unfinished),89.98,0.014261461200619769,0.043319996,30.4
+TMDX,17.9,⚪ Standard (< 0),Live (Unfinished),89.98,0.014261461200619769,0.043319996,30.4
 FRPT,17.1,⚪ Standard (< 0),Confirmed (Previous),69.86,0.005709838422127581,0.03486,18.162
 CSGP,16.0,🟢🟢 Deep Floor,Confirmed (Previous),32.07,0.03295100042424601,0.00466,31.54
-GWRE,13.5,⚪ Standard (< 0),Confirmed (Previous),204.75,0.024449676181997802,0.03536,75.411
+GWRE,12.4,⚪ Standard (< 0),Confirmed (Previous),204.75,0.011005417384230255,0.03536,75.411
 CLF,8.1,⚪ Standard (< 0),Confirmed (Previous),11.55,0.0008588354410159952,-0.01706,29.124
 CG,6.7,⚪ Standard (< 0),Confirmed (Previous),48.39,0.0,0.02031,100.0
 APO,5.5,⚪ Standard (< 0),Confirmed (Previous),136.58,0.0,0.0094099995,100.0

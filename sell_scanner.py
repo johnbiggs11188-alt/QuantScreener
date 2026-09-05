@@ -21,61 +21,79 @@ def calculate_stoch_rsi(series, period=14, smoothK=3):
     gain = delta.where(delta > 0, 0).ewm(alpha=1/period, adjust=False).mean()
     loss = (-delta.where(delta < 0, 0)).ewm(alpha=1/period, adjust=False).mean()
     rsi = 100 - (100 / (1 + gain / loss))
-    
     stoch = (rsi - rsi.rolling(period).min()) / (rsi.rolling(period).max() - rsi.rolling(period).min()) * 100
     return stoch.rolling(smoothK).mean()
 
 if __name__ == "__main__":
     today = datetime.now().strftime("%Y-%m-%d")
     
+    portfolio = {}
+    cash_balance = 0.0
+    
     try:
         with open("portfolio.txt", "r") as f:
-            tickers = [line.strip().upper() for line in f if line.strip()]
+            for line in f:
+                if not line.strip(): continue
+                parts = line.strip().split(',')
+                ticker = parts[0].strip().upper()
+                shares = float(parts[1].strip()) if len(parts) > 1 else 0.0
+                
+                if ticker == "CASH":
+                    cash_balance = shares
+                else:
+                    portfolio[ticker] = shares
     except FileNotFoundError:
         print("portfolio.txt not found.")
         exit()
 
     results = []
-    print(f"🔍 Scanning {len(tickers)} portfolio stocks for exit signals...")
+    total_equity = cash_balance
+    print(f"🔍 Scanning portfolio, checking signals, and calculating balance...")
     
-    for ticker in tickers:
+    for ticker, shares in portfolio.items():
         try:
             df_daily = yf.download(ticker, period="1y", interval="1d", progress=False)
-            df_weekly = yf.download(ticker, period="2y", interval="1wk", progress=False)
+            if df_daily.empty: continue
             
-            if df_daily.empty or df_weekly.empty: continue
-                
-            d_wt1, d_wt2 = calculate_wavetrend(df_daily)
-            d_stoch_rsi = calculate_stoch_rsi(df_daily['Close'])
+            close_price = float(df_daily['Close'].iloc[-1])
+            position_value = shares * close_price
+            total_equity += position_value
             
-            w_wt1, w_wt2 = calculate_wavetrend(df_weekly)
-            
-            # Daily triggers
-            daily_red_dot = (d_wt1.iloc[-1] < d_wt2.iloc[-1]) and (d_wt1.iloc[-2] >= d_wt2.iloc[-2])
-            strat1 = daily_red_dot and (d_wt1.iloc[-2] >= 53) # Red Zone cross
-            
-            # Weekly / Stoch Triggers
-            weekly_red_dot = (w_wt1.iloc[-1] < w_wt2.iloc[-1]) and (w_wt1.iloc[-2] >= w_wt2.iloc[-2])
-            stoch_overbought = d_stoch_rsi.iloc[-1] >= 80 # White dotted line
-            strat2 = stoch_overbought or weekly_red_dot
-            
-            status = []
-            if strat1: status.append("🔴 S1: Daily Red Dot (Red Zone)")
-            if stoch_overbought: status.append("📈 S2: StochRSI Overbought (>= 80)")
-            if weekly_red_dot: status.append("🔴 S2: Weekly Red Dot")
+            # Skip technical analysis for VOO (just hold for value)
+            if ticker != "VOO":
+                df_weekly = yf.download(ticker, period="2y", interval="1wk", progress=False)
+                if df_weekly.empty: continue
                     
-            if status:
-                results.append({
-                    "Ticker": ticker,
-                    "Close Price": round(float(df_daily['Close'].iloc[-1]), 2),
-                    "Sell Alerts": " | ".join(status),
-                    "Daily WT1": round(float(d_wt1.iloc[-1]), 1),
-                    "StochRSI": round(float(d_stoch_rsi.iloc[-1]), 1)
-                })
+                d_wt1, d_wt2 = calculate_wavetrend(df_daily)
+                d_stoch_rsi = calculate_stoch_rsi(df_daily['Close'])
+                w_wt1, w_wt2 = calculate_wavetrend(df_weekly)
+                
+                daily_red_dot = (d_wt1.iloc[-1] < d_wt2.iloc[-1]) and (d_wt1.iloc[-2] >= d_wt2.iloc[-2])
+                strat1 = daily_red_dot and (d_wt1.iloc[-2] >= 53) 
+                
+                weekly_red_dot = (w_wt1.iloc[-1] < w_wt2.iloc[-1]) and (w_wt1.iloc[-2] >= w_wt2.iloc[-2])
+                stoch_overbought = d_stoch_rsi.iloc[-1] >= 80 
+                
+                status = []
+                if strat1: status.append("🔴 S1: Daily Red Dot (Red Zone)")
+                if stoch_overbought: status.append("📈 S2: StochRSI Overbought (>= 80)")
+                if weekly_red_dot: status.append("🔴 S2: Weekly Red Dot")
+                        
+                if status:
+                    results.append({
+                        "Ticker": ticker,
+                        "Close Price": round(close_price, 2),
+                        "Sell Alerts": " | ".join(status),
+                        "Daily WT1": round(float(d_wt1.iloc[-1]), 1),
+                        "StochRSI": round(float(d_stoch_rsi.iloc[-1]), 1)
+                    })
         except Exception:
             pass
             
-    # Auto-cleanup old sell signals
+    # Save the grand total for Streamlit
+    with open("portfolio_balance.txt", "w") as f:
+        f.write(str(total_equity))
+            
     for f in glob.glob("sell_signals_*.csv"):
         if today not in f: os.remove(f)
             
@@ -87,4 +105,4 @@ if __name__ == "__main__":
         print(f"🚨 Found {len(df_results)} exit alerts! Saved to {filename}")
     else:
         pd.DataFrame(columns=["Ticker", "Close Price", "Sell Alerts", "Daily WT1", "StochRSI"]).to_csv(filename, index=False)
-        print("✅ No sell signals found today.")
+        print(f"✅ Total Equity: ${total_equity:,.2f}. No sell signals found today.")

@@ -99,6 +99,39 @@ with tab3:
     render_dashboard(daily_data, daily_file, "Daily Signals")
 
 with tab4:
+    st.markdown("**💰 Capital Allocation Calculator**")
+    
+    # Top Row: Balance and Inputs
+    col_bal, col_add, col_tot = st.columns(3)
+    current_balance = col_bal.number_input("Current Balance ($)", min_value=0.0, value=10000.0, step=100.0)
+    new_deposit = col_add.number_input("New Deposit to Add ($)", min_value=0.0, value=300.0, step=50.0)
+    
+    total_capital = current_balance + new_deposit
+    col_tot.metric("Total Locked-In Value (Z)", f"${total_capital:,.2f}")
+    
+    st.write("---")
+    
+    # Middle Row: The Allocation Breakdown
+    st.markdown("**New Deposit Routing (10% Cash | 60% VOO | 30% Stocks)**")
+    
+    alloc_cash = new_deposit * 0.10
+    alloc_voo = new_deposit * 0.60
+    alloc_stocks = new_deposit * 0.30
+    
+    # 2.5% max position size based on the TOTAL new portfolio value
+    max_per_stock = total_capital * 0.025 
+    
+    a1, a2, a3 = st.columns(3)
+    a1.metric("💵 To Cash (10%)", f"${alloc_cash:,.2f}")
+    a2.metric("📈 To VOO (60%)", f"${alloc_voo:,.2f}")
+    a3.metric("🎯 To Stocks (30%)", f"${alloc_stocks:,.2f}")
+    
+    st.info(f"💡 **Max Position Rule:** With a total portfolio value of ${total_capital:,.2f}, your absolute maximum buy for any single stock (2.5%) is **${max_per_stock:,.2f}**.")
+    
+    st.write("---")
+    
+    # Bottom Row: Existing Sell Signals
+    st.markdown("**🚨 Active Sell Signals**")
     if sell_data is None:
         st.info("No portfolio exit scan found. Run `python sell_scanner.py` to generate exit alerts.")
     else:

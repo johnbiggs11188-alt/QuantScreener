@@ -113,14 +113,23 @@ with tab4:
         pass
 
     current_balance = cash_balance
+    voo_balance = 0.0
+    
     if dash_data is not None and not dash_data.empty:
         current_balance += dash_data['Current Balance'].sum()
         
-        # Reorder and rename columns to match the image format
-        display_df = dash_data[["Symbol", "Current Balance", "Quantity", "Price", "$ Change", "% Change", "$ Unrealized", "% Unrealized"]].copy()
-        display_df.columns = ["SYMBOL", "CURRENT BALANCE", "QUANTITY", "CURRENT PRICE", "DAY $ CHANGE", "DAY % CHANGE", "LIFETIME GAIN/LOSS", "LIFETIME % GAIN/LOSS"]
+        # Extract VOO for waterfall math
+        voo_row = dash_data[dash_data['Symbol'] == 'VOO']
+        if not voo_row.empty:
+            voo_balance = voo_row.iloc[0]['Current Balance']
         
-        # Styling functions for formatting arrows and colors
+        # Calculate the % of Portfolio
+        dash_data['% of Portfolio'] = (dash_data['Current Balance'] / current_balance) * 100
+        
+        # Reorder and rename columns
+        display_df = dash_data[["Symbol", "Current Balance", "% of Portfolio", "Quantity", "Price", "$ Change", "% Change", "$ Unrealized"]].copy()
+        display_df.columns = ["SYMBOL", "CURRENT BALANCE", "% OF PORTFOLIO", "QUANTITY", "CURRENT PRICE", "DAY $ CHANGE", "DAY % CHANGE", "LIFETIME GAIN/LOSS"]
+        
         def format_dol(val):
             if pd.isna(val): return ""
             if val > 0: return f"▲ ${val:,.2f}"
@@ -135,33 +144,31 @@ with tab4:
 
         def color_pnl(val):
             if pd.isna(val): return ""
-            if val > 0: return 'color: #00C853;' # Green
-            if val < 0: return 'color: #FF1744;' # Red
+            if val > 0: return 'color: #00C853;' 
+            if val < 0: return 'color: #FF1744;' 
             return ''
 
-        # Apply the styling to the dataframe
         styled_dash = display_df.style.format({
             "CURRENT BALANCE": "${:,.2f}",
+            "% OF PORTFOLIO": "{:.2f}%",
             "QUANTITY": "{:.3f}",
             "CURRENT PRICE": "${:,.2f}",
             "DAY $ CHANGE": format_dol,
             "DAY % CHANGE": format_pct,
-            "LIFETIME GAIN/LOSS": format_dol,
-            "LIFETIME % GAIN/LOSS": format_pct
+            "LIFETIME GAIN/LOSS": format_dol
         })
         
-        # Ensure compatibility across different pandas versions
         if hasattr(styled_dash, 'map'):
-            styled_dash = styled_dash.map(color_pnl, subset=["DAY $ CHANGE", "DAY % CHANGE", "LIFETIME GAIN/LOSS", "LIFETIME % GAIN/LOSS"])
+            styled_dash = styled_dash.map(color_pnl, subset=["DAY $ CHANGE", "DAY % CHANGE", "LIFETIME GAIN/LOSS"])
         else:
-            styled_dash = styled_dash.applymap(color_pnl, subset=["DAY $ CHANGE", "DAY % CHANGE", "LIFETIME GAIN/LOSS", "LIFETIME % GAIN/LOSS"])
+            styled_dash = styled_dash.applymap(color_pnl, subset=["DAY $ CHANGE", "DAY % CHANGE", "LIFETIME GAIN/LOSS"])
 
         st.dataframe(styled_dash, hide_index=True, use_container_width=True)
     else:
         st.info("No dashboard data found. Run `python sell_scanner.py`.")
         
     st.write("---")
-    st.markdown("### 💰 Capital Allocation Calculator")
+    st.markdown("### 💰 Waterfall Capital Allocation")
     
     col_bal, col_add, col_tot = st.columns(3)
     col_bal.metric("Total Equity (Live)", f"${current_balance:,.2f}")
@@ -170,17 +177,32 @@ with tab4:
     total_capital = current_balance + new_deposit
     col_tot.metric("Target Portfolio Value", f"${total_capital:,.2f}")
     
-    alloc_cash = new_deposit * 0.10
-    alloc_voo = new_deposit * 0.60
-    alloc_stocks = new_deposit * 0.30
+    # --- WATERFALL MATH ---
+    target_voo = total_capital * 0.60
+    target_cash = total_capital * 0.10
+    
+    remaining_deposit = new_deposit
+    
+    # Priority 1: VOO (Up to 60%)
+    voo_deficit = max(0.0, target_voo - voo_balance)
+    alloc_voo = min(remaining_deposit, voo_deficit)
+    remaining_deposit -= alloc_voo
+    
+    # Priority 2: Cash (Up to 10%)
+    cash_deficit = max(0.0, target_cash - cash_balance)
+    alloc_cash = min(remaining_deposit, cash_deficit)
+    remaining_deposit -= alloc_cash
+    
+    # Priority 3: Stocks (Whatever is left)
+    alloc_stocks = remaining_deposit
+    
+    st.markdown("**New Deposit Routing**")
+    a1, a2, a3 = st.columns(3)
+    a1.metric(f"📈 To VOO (Target: 60%)", f"${alloc_voo:,.2f}")
+    a2.metric(f"💵 To Cash (Target: 10%)", f"${alloc_cash:,.2f}")
+    a3.metric(f"🎯 To Stocks (Available)", f"${alloc_stocks:,.2f}")
     
     max_per_stock = total_capital * 0.025 
-    
-    a1, a2, a3 = st.columns(3)
-    a1.metric("💵 To Cash (10%)", f"${alloc_cash:,.2f}")
-    a2.metric("📈 To VOO (60%)", f"${alloc_voo:,.2f}")
-    a3.metric("🎯 To Stocks (30%)", f"${alloc_stocks:,.2f}")
-    
     st.caption(f"💡 **Max Position Rule:** 2.5% maximum buy for any single stock is **${max_per_stock:,.2f}** based on Target Portfolio Value.")
     
     st.write("---")

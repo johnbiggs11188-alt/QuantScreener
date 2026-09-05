@@ -116,21 +116,47 @@ with tab4:
     if dash_data is not None and not dash_data.empty:
         current_balance += dash_data['Current Balance'].sum()
         
-        st.dataframe(
-            dash_data,
-            column_config={
-                "Symbol": st.column_config.TextColumn("Symbol", width="small"),
-                "Price": st.column_config.NumberColumn("Price", format="$%.2f"),
-                "$ Change": st.column_config.NumberColumn("$ Change", format="$%.2f"),
-                "% Change": st.column_config.NumberColumn("% Change", format="%.2f%%"),
-                "Quantity": st.column_config.NumberColumn("Quantity", format="%.3f"),
-                "$ Unrealized": st.column_config.NumberColumn("$ Unrealized", format="$%.2f"),
-                "% Unrealized": st.column_config.NumberColumn("% Unrealized", format="%.2f%%"),
-                "Current Balance": st.column_config.NumberColumn("Current Balance", format="$%.2f")
-            },
-            hide_index=True,
-            use_container_width=True
-        )
+        # Reorder and rename columns to match the image format
+        display_df = dash_data[["Symbol", "Current Balance", "Quantity", "Price", "$ Change", "% Change", "$ Unrealized", "% Unrealized"]].copy()
+        display_df.columns = ["SYMBOL", "CURRENT BALANCE", "QUANTITY", "CURRENT PRICE", "DAY $ CHANGE", "DAY % CHANGE", "LIFETIME GAIN/LOSS", "LIFETIME % GAIN/LOSS"]
+        
+        # Styling functions for formatting arrows and colors
+        def format_dol(val):
+            if pd.isna(val): return ""
+            if val > 0: return f"▲ ${val:,.2f}"
+            if val < 0: return f"▼ -${abs(val):,.2f}"
+            return "$0.00"
+
+        def format_pct(val):
+            if pd.isna(val): return ""
+            if val > 0: return f"▲ {val:.2f}%"
+            if val < 0: return f"▼ -{abs(val):.2f}%"
+            return "0.00%"
+
+        def color_pnl(val):
+            if pd.isna(val): return ""
+            if val > 0: return 'color: #00C853;' # Green
+            if val < 0: return 'color: #FF1744;' # Red
+            return ''
+
+        # Apply the styling to the dataframe
+        styled_dash = display_df.style.format({
+            "CURRENT BALANCE": "${:,.2f}",
+            "QUANTITY": "{:.3f}",
+            "CURRENT PRICE": "${:,.2f}",
+            "DAY $ CHANGE": format_dol,
+            "DAY % CHANGE": format_pct,
+            "LIFETIME GAIN/LOSS": format_dol,
+            "LIFETIME % GAIN/LOSS": format_pct
+        })
+        
+        # Ensure compatibility across different pandas versions
+        if hasattr(styled_dash, 'map'):
+            styled_dash = styled_dash.map(color_pnl, subset=["DAY $ CHANGE", "DAY % CHANGE", "LIFETIME GAIN/LOSS", "LIFETIME % GAIN/LOSS"])
+        else:
+            styled_dash = styled_dash.applymap(color_pnl, subset=["DAY $ CHANGE", "DAY % CHANGE", "LIFETIME GAIN/LOSS", "LIFETIME % GAIN/LOSS"])
+
+        st.dataframe(styled_dash, hide_index=True, use_container_width=True)
     else:
         st.info("No dashboard data found. Run `python sell_scanner.py`.")
         

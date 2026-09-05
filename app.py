@@ -10,16 +10,23 @@ def load_latest_results(timeframe):
     list_of_files = glob.glob(f'screener_results_{timeframe}_*.csv')
     if not list_of_files:
         return None, None
-    # Sort alphabetically so YYYY-MM-DD forces the newest date to the very end of the list
     latest_file = sorted(list_of_files)[-1] 
+    return pd.read_csv(latest_file), latest_file
+
+def load_sell_signals():
+    list_of_files = glob.glob('sell_signals_*.csv')
+    if not list_of_files:
+        return None, None
+    latest_file = sorted(list_of_files)[-1]
     return pd.read_csv(latest_file), latest_file
 
 monthly_data, monthly_file = load_latest_results("monthly")
 weekly_data, weekly_file = load_latest_results("weekly")
 daily_data, daily_file = load_latest_results("daily")
+sell_data, sell_file = load_sell_signals()
 
-if monthly_data is None and weekly_data is None and daily_data is None:
-    st.warning("No scans found. Run `python scanner.py` in your terminal.")
+if monthly_data is None and weekly_data is None and daily_data is None and sell_data is None:
+    st.warning("No scans found. Run `python scanner.py` and `python sell_scanner.py` in your terminal.")
     st.stop()
 
 st.sidebar.header("Filter Setup")
@@ -28,17 +35,20 @@ min_grade = st.sidebar.slider("Minimum Quant Grade", min_value=0, max_value=100,
 all_tiers = set()
 all_statuses = set()
 for df in [monthly_data, weekly_data, daily_data]:
-    if df is not None:
-        all_tiers.update(df['Floor Tier'].unique())
-        all_statuses.update(df['Status'].unique())
+    if df is not None and not df.empty:
+        if 'Floor Tier' in df.columns:
+            all_tiers.update(df['Floor Tier'].dropna().unique())
+        if 'Status' in df.columns:
+            all_statuses.update(df['Status'].dropna().unique())
 
 selected_tier = st.sidebar.multiselect("Technical Floor Tier:", options=list(all_tiers), default=list(all_tiers))
 selected_status = st.sidebar.multiselect("Signal Status:", options=list(all_statuses), default=list(all_statuses))
 
-tab1, tab2, tab3 = st.tabs([
+tab1, tab2, tab3, tab4 = st.tabs([
     "📅 Monthly Outlook", 
     "🗓️ Weekly (Deep & Oversold)", 
-    "🟢 Daily Signals (Gold & Strong Green)"
+    "🟢 Daily Signals (Gold & Strong Green)",
+    "🚪 Portfolio Exits"
 ])
 
 def render_dashboard(df, filename, tab_title):
@@ -50,7 +60,7 @@ def render_dashboard(df, filename, tab_title):
     
     filtered_df = df[
         (df['Final_Grade'] >= min_grade) & 
-        (df['Floor Tier'].isin(selected_tier)) &
+        (df['Floor Tier'].isin(selected_tier)) & 
         (df['Status'].isin(selected_status))
     ]
     
@@ -87,3 +97,25 @@ with tab2:
 
 with tab3:
     render_dashboard(daily_data, daily_file, "Daily Signals")
+
+with tab4:
+    if sell_data is None:
+        st.info("No portfolio exit scan found. Run `python sell_scanner.py` to generate exit alerts.")
+    else:
+        st.caption(f"Loaded exit data from: `{sell_file}`")
+        if not sell_data.empty:
+            st.error(f"🚨 {len(sell_data)} Exit Alert(s) Triggered!")
+            st.dataframe(
+                sell_data,
+                column_config={
+                    "Ticker": st.column_config.TextColumn("Ticker", width="small"),
+                    "Close Price": st.column_config.NumberColumn("Close Price", format="$%.2f"),
+                    "Sell Alerts": st.column_config.TextColumn("Triggered Conditions"),
+                    "Daily WT1": st.column_config.NumberColumn("Daily WT1", format="%.1f"),
+                    "StochRSI": st.column_config.NumberColumn("StochRSI", format="%.1f"),
+                },
+                hide_index=True,
+                use_container_width=True
+            )
+        else:
+            st.success("No sell signals triggered for your portfolio today.")

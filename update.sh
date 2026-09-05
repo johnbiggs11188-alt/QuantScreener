@@ -3,6 +3,7 @@
 echo "🚀 Starting the Daily Quant Scan..."
 source venv/bin/activate
 python scanner.py
+python sell_scanner.py
 
 echo "☁️ Pushing new data to GitHub..."
 git add .

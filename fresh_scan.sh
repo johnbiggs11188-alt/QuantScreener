@@ -6,6 +6,7 @@ rm raw_data_*.pkl 2>/dev/null
 echo "🚀 Starting the Quant Scan..."
 source venv/bin/activate
 python scanner.py
+python sell_scanner.py
 
 echo "☁️ Pushing new data to GitHub..."
 git add .

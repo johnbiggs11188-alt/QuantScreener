@@ -13,17 +13,19 @@ def load_latest_results(timeframe):
     latest_file = sorted(list_of_files)[-1] 
     return pd.read_csv(latest_file), latest_file
 
-def load_sell_signals():
-    list_of_files = glob.glob('sell_signals_*.csv')
-    if not list_of_files:
-        return None, None
-    latest_file = sorted(list_of_files)[-1]
-    return pd.read_csv(latest_file), latest_file
+def load_portfolio_files():
+    dash_files = glob.glob('portfolio_dashboard_*.csv')
+    dash_data = pd.read_csv(sorted(dash_files)[-1]) if dash_files else None
+    
+    sell_files = glob.glob('sell_signals_*.csv')
+    sell_data = pd.read_csv(sorted(sell_files)[-1]) if sell_files else None
+    
+    return dash_data, sell_data
 
 monthly_data, monthly_file = load_latest_results("monthly")
 weekly_data, weekly_file = load_latest_results("weekly")
 daily_data, daily_file = load_latest_results("daily")
-sell_data, sell_file = load_sell_signals()
+dash_data, sell_data = load_portfolio_files()
 
 if monthly_data is None and weekly_data is None and daily_data is None and sell_data is None:
     st.warning("No scans found. Run `python scanner.py` and `python sell_scanner.py` in your terminal.")
@@ -99,26 +101,53 @@ with tab3:
     render_dashboard(daily_data, daily_file, "Daily Signals")
 
 with tab4:
-    st.markdown("**💰 Capital Allocation Calculator**")
+    st.markdown("### 📊 Live Portfolio Dashboard")
     
-    # Top Row: Balance and Inputs
+    cash_balance = 0.0
+    try:
+        with open("portfolio.txt", "r") as f:
+            for line in f:
+                if line.startswith("CASH"):
+                    cash_balance = float(line.split(',')[1].strip())
+    except:
+        pass
+
+    current_balance = cash_balance
+    if dash_data is not None and not dash_data.empty:
+        current_balance += dash_data['Current Balance'].sum()
+        
+        st.dataframe(
+            dash_data,
+            column_config={
+                "Symbol": st.column_config.TextColumn("Symbol", width="small"),
+                "Price": st.column_config.NumberColumn("Price", format="$%.2f"),
+                "$ Change": st.column_config.NumberColumn("$ Change", format="$%.2f"),
+                "% Change": st.column_config.NumberColumn("% Change", format="%.2f%%"),
+                "Quantity": st.column_config.NumberColumn("Quantity", format="%.3f"),
+                "$ Unrealized": st.column_config.NumberColumn("$ Unrealized", format="$%.2f"),
+                "% Unrealized": st.column_config.NumberColumn("% Unrealized", format="%.2f%%"),
+                "Current Balance": st.column_config.NumberColumn("Current Balance", format="$%.2f")
+            },
+            hide_index=True,
+            use_container_width=True
+        )
+    else:
+        st.info("No dashboard data found. Run `python sell_scanner.py`.")
+        
+    st.write("---")
+    st.markdown("### 💰 Capital Allocation Calculator")
+    
     col_bal, col_add, col_tot = st.columns(3)
-    current_balance = col_bal.number_input("Current Balance ($)", min_value=0.0, value=10000.0, step=100.0)
+    col_bal.metric("Total Equity (Live)", f"${current_balance:,.2f}")
     new_deposit = col_add.number_input("New Deposit to Add ($)", min_value=0.0, value=300.0, step=50.0)
     
     total_capital = current_balance + new_deposit
-    col_tot.metric("Total Locked-In Value (Z)", f"${total_capital:,.2f}")
-    
-    st.write("---")
-    
-    # Middle Row: The Allocation Breakdown
-    st.markdown("**New Deposit Routing (10% Cash | 60% VOO | 30% Stocks)**")
+    col_tot.metric("Target Portfolio Value", f"${total_capital:,.2f}")
     
     alloc_cash = new_deposit * 0.10
     alloc_voo = new_deposit * 0.60
     alloc_stocks = new_deposit * 0.30
     
-    # 2.5% max position size based on the TOTAL new portfolio value
     max_per_stock = total_capital * 0.025 
     
     a1, a2, a3 = st.columns(3)
@@ -126,29 +155,15 @@ with tab4:
     a2.metric("📈 To VOO (60%)", f"${alloc_voo:,.2f}")
     a3.metric("🎯 To Stocks (30%)", f"${alloc_stocks:,.2f}")
     
-    st.info(f"💡 **Max Position Rule:** With a total portfolio value of ${total_capital:,.2f}, your absolute maximum buy for any single stock (2.5%) is **${max_per_stock:,.2f}**.")
+    st.caption(f"💡 **Max Position Rule:** 2.5% maximum buy for any single stock is **${max_per_stock:,.2f}** based on Target Portfolio Value.")
     
     st.write("---")
-    
-    # Bottom Row: Existing Sell Signals
-    st.markdown("**🚨 Active Sell Signals**")
+    st.markdown("### 🚨 Active Sell Signals")
     if sell_data is None:
-        st.info("No portfolio exit scan found. Run `python sell_scanner.py` to generate exit alerts.")
+        st.info("No portfolio exit scan found.")
     else:
-        st.caption(f"Loaded exit data from: `{sell_file}`")
         if not sell_data.empty:
             st.error(f"🚨 {len(sell_data)} Exit Alert(s) Triggered!")
-            st.dataframe(
-                sell_data,
-                column_config={
-                    "Ticker": st.column_config.TextColumn("Ticker", width="small"),
-                    "Close Price": st.column_config.NumberColumn("Close Price", format="$%.2f"),
-                    "Sell Alerts": st.column_config.TextColumn("Triggered Conditions"),
-                    "Daily WT1": st.column_config.NumberColumn("Daily WT1", format="%.1f"),
-                    "StochRSI": st.column_config.NumberColumn("StochRSI", format="%.1f"),
-                },
-                hide_index=True,
-                use_container_width=True
-            )
+            st.dataframe(sell_data, hide_index=True, use_container_width=True)
         else:
             st.success("No sell signals triggered for your portfolio today.")

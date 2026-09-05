@@ -27,7 +27,7 @@ def calculate_stoch_rsi(series, period=14, smoothK=3):
 if __name__ == "__main__":
     today = datetime.now().strftime("%Y-%m-%d")
     
-    portfolio = {}
+    portfolio = []
     cash_balance = 0.0
     
     try:
@@ -37,29 +37,58 @@ if __name__ == "__main__":
                 parts = line.strip().split(',')
                 ticker = parts[0].strip().upper()
                 shares = float(parts[1].strip()) if len(parts) > 1 else 0.0
+                cost = float(parts[2].strip()) if len(parts) > 2 else 0.0
                 
                 if ticker == "CASH":
                     cash_balance = shares
                 else:
-                    portfolio[ticker] = shares
+                    portfolio.append({"ticker": ticker, "shares": shares, "cost": cost})
     except FileNotFoundError:
         print("portfolio.txt not found.")
         exit()
 
-    results = []
-    total_equity = cash_balance
-    print(f"🔍 Scanning portfolio, checking signals, and calculating balance...")
+    sell_signals = []
+    dashboard_data = []
     
-    for ticker, shares in portfolio.items():
+    print("🔍 Scanning portfolio for live dashboard data and exit signals...")
+    
+    for pos in portfolio:
+        ticker = pos["ticker"]
+        shares = pos["shares"]
+        cost_basis = pos["cost"]
+        
         try:
             df_daily = yf.download(ticker, period="1y", interval="1d", progress=False)
             if df_daily.empty: continue
             
-            close_price = float(df_daily['Close'].iloc[-1])
-            position_value = shares * close_price
-            total_equity += position_value
+            # Live Dashboard Math
+            current_price = float(df_daily['Close'].iloc[-1])
+            prev_price = float(df_daily['Close'].iloc[-2])
             
-            # Skip technical analysis for VOO (just hold for value)
+            day_change_dol = current_price - prev_price
+            day_change_pct = (day_change_dol / prev_price) * 100
+            curr_balance = shares * current_price
+            
+            # Ignore P&L for VOO (cost_basis = 0)
+            if cost_basis > 0:
+                unrealized_dol = curr_balance - (shares * cost_basis)
+                unrealized_pct = (unrealized_dol / (shares * cost_basis)) * 100
+            else:
+                unrealized_dol = 0.0
+                unrealized_pct = 0.0
+            
+            dashboard_data.append({
+                "Symbol": ticker,
+                "Price": current_price,
+                "$ Change": day_change_dol,
+                "% Change": day_change_pct,
+                "Quantity": shares,
+                "$ Unrealized": unrealized_dol,
+                "% Unrealized": unrealized_pct,
+                "Current Balance": curr_balance
+            })
+            
+            # Sell Signal Math (Skip VOO)
             if ticker != "VOO":
                 df_weekly = yf.download(ticker, period="2y", interval="1wk", progress=False)
                 if df_weekly.empty: continue
@@ -80,29 +109,30 @@ if __name__ == "__main__":
                 if weekly_red_dot: status.append("🔴 S2: Weekly Red Dot")
                         
                 if status:
-                    results.append({
+                    sell_signals.append({
                         "Ticker": ticker,
-                        "Close Price": round(close_price, 2),
+                        "Close Price": round(current_price, 2),
                         "Sell Alerts": " | ".join(status),
                         "Daily WT1": round(float(d_wt1.iloc[-1]), 1),
                         "StochRSI": round(float(d_stoch_rsi.iloc[-1]), 1)
                     })
-        except Exception:
+        except Exception as e:
+            print(f"Error processing {ticker}: {e}")
             pass
             
-    # Save the grand total for Streamlit
-    with open("portfolio_balance.txt", "w") as f:
-        f.write(str(total_equity))
-            
-    for f in glob.glob("sell_signals_*.csv"):
+    # Cleanup old files
+    for f in glob.glob("sell_signals_*.csv") + glob.glob("portfolio_dashboard_*.csv"):
         if today not in f: os.remove(f)
             
-    df_results = pd.DataFrame(results)
-    filename = f"sell_signals_{today}.csv"
-    
-    if not df_results.empty:
-        df_results.to_csv(filename, index=False)
-        print(f"🚨 Found {len(df_results)} exit alerts! Saved to {filename}")
+    # Save Files
+    df_dash = pd.DataFrame(dashboard_data)
+    if not df_dash.empty:
+        df_dash.to_csv(f"portfolio_dashboard_{today}.csv", index=False)
+        
+    df_sell = pd.DataFrame(sell_signals)
+    if not df_sell.empty:
+        df_sell.to_csv(f"sell_signals_{today}.csv", index=False)
     else:
-        pd.DataFrame(columns=["Ticker", "Close Price", "Sell Alerts", "Daily WT1", "StochRSI"]).to_csv(filename, index=False)
-        print(f"✅ Total Equity: ${total_equity:,.2f}. No sell signals found today.")
+        pd.DataFrame(columns=["Ticker", "Close Price", "Sell Alerts", "Daily WT1", "StochRSI"]).to_csv(f"sell_signals_{today}.csv", index=False)
+        
+    print(f"✅ Dashboard generated. Found {len(df_sell)} sell alerts.")

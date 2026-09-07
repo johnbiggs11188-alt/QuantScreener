@@ -168,7 +168,7 @@ with tab4:
     st.write("---")
     st.markdown("### 💰 Waterfall Capital Allocation")
     
-    st.metric("Total Equity (Live)", f"${current_balance:,.2f}")
+    st.metric("Total Equity (Live from local scan)", f"${current_balance:,.2f}")
     
     conn = st.connection("gsheets", type=GSheetsConnection)
     
@@ -178,36 +178,47 @@ with tab4:
         voo_deposits = voo_deposits[voo_deposits != ""]
         
         if not voo_deposits.empty:
-            # Clean the string by removing the dollar sign and any commas
             raw_value = str(voo_deposits.iloc[-1])
             clean_value = raw_value.replace('$', '').replace(',', '').strip()
             new_deposit = float(clean_value)
         else:
             new_deposit = 0.0
             
-        st.success(f"✅ Automatically loaded this week's deposit from Google Sheets: **${new_deposit:,.2f}**")
-        
     except Exception as e:
         st.error(f"Google Sheets Error: {e}")
         new_deposit = 0.0
 
-    total_capital = current_balance + new_deposit
+    st.write("---")
+    apply_deposit = st.toggle(f"Apply new Google Sheets deposit (**${new_deposit:,.2f}**) to run waterfall math", value=False)
+    
+    if apply_deposit:
+        total_capital = current_balance + new_deposit
+        remaining_deposit = new_deposit
+        st.success("✅ Deposit applied. Routing metrics updated.")
+    else:
+        total_capital = current_balance
+        remaining_deposit = 0.0
+        st.info("ℹ️ Deposit not applied. Showing baseline portfolio targets.")
+
     st.metric("Target Portfolio Value", f"${total_capital:,.2f}")
     
     target_voo = total_capital * 0.60
     target_cash = total_capital * 0.10
     
-    remaining_deposit = new_deposit
-    
-    voo_deficit = max(0.0, target_voo - voo_balance)
-    alloc_voo = min(remaining_deposit, voo_deficit)
-    remaining_deposit -= alloc_voo
-    
-    cash_deficit = max(0.0, target_cash - cash_balance)
-    alloc_cash = min(remaining_deposit, cash_deficit)
-    remaining_deposit -= alloc_cash
-    
-    alloc_stocks = remaining_deposit
+    if remaining_deposit > 0:
+        voo_deficit = max(0.0, target_voo - voo_balance)
+        alloc_voo = min(remaining_deposit, voo_deficit)
+        remaining_deposit -= alloc_voo
+        
+        cash_deficit = max(0.0, target_cash - cash_balance)
+        alloc_cash = min(remaining_deposit, cash_deficit)
+        remaining_deposit -= alloc_cash
+        
+        alloc_stocks = remaining_deposit
+    else:
+        alloc_voo = 0.0
+        alloc_cash = 0.0
+        alloc_stocks = 0.0
     
     st.markdown("**New Deposit Routing**")
     a1, a2, a3 = st.columns(3)

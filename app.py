@@ -193,19 +193,14 @@ with tab4:
     
     if apply_deposit:
         total_capital = current_balance + new_deposit
-        remaining_deposit = new_deposit
         st.success("✅ Deposit applied. Routing metrics updated.")
-    else:
-        total_capital = current_balance
-        remaining_deposit = 0.0
-        st.info("ℹ️ Deposit not applied. Showing baseline portfolio targets.")
-
-    st.metric("Target Portfolio Value", f"${total_capital:,.2f}")
-    
-    target_voo = total_capital * 0.60
-    target_cash = total_capital * 0.10
-    
-    if remaining_deposit > 0:
+        st.metric("Target Portfolio Value", f"${total_capital:,.2f}")
+        
+        target_voo = total_capital * 0.60
+        target_cash = total_capital * 0.10
+        
+        remaining_deposit = new_deposit
+        
         voo_deficit = max(0.0, target_voo - voo_balance)
         alloc_voo = min(remaining_deposit, voo_deficit)
         remaining_deposit -= alloc_voo
@@ -215,16 +210,35 @@ with tab4:
         remaining_deposit -= alloc_cash
         
         alloc_stocks = remaining_deposit
+        
+        st.markdown("**New Deposit Routing**")
+        a1, a2, a3 = st.columns(3)
+        a1.metric(f"📈 To VOO (Target: 60%)", f"${alloc_voo:,.2f}")
+        a2.metric(f"💵 To Cash (Target: 10%)", f"${alloc_cash:,.2f}")
+        a3.metric(f"🎯 To Stocks (Available)", f"${alloc_stocks:,.2f}")
+
     else:
-        alloc_voo = 0.0
-        alloc_cash = 0.0
-        alloc_stocks = 0.0
-    
-    st.markdown("**New Deposit Routing**")
-    a1, a2, a3 = st.columns(3)
-    a1.metric(f"📈 To VOO (Target: 60%)", f"${alloc_voo:,.2f}")
-    a2.metric(f"💵 To Cash (Target: 10%)", f"${alloc_cash:,.2f}")
-    a3.metric(f"🎯 To Stocks (Available)", f"${alloc_stocks:,.2f}")
+        total_capital = current_balance
+        st.info("ℹ️ Deposit not applied. Showing baseline portfolio targets.")
+        st.metric("Target Portfolio Value", f"${total_capital:,.2f}")
+        
+        target_voo = total_capital * 0.60
+        target_cash = total_capital * 0.10
+        
+        voo_deficit = max(0.0, target_voo - voo_balance)
+        cash_deficit = max(0.0, target_cash - cash_balance)
+        
+        voo_status = "✅ Good" if voo_balance >= target_voo else f"⚠️ Short ${voo_deficit:,.2f}"
+        cash_status = "✅ Good" if cash_balance >= target_cash else f"⚠️ Short ${cash_deficit:,.2f}"
+        
+        # Calculate how much of your current cash is allowed to be spent on stocks
+        available_stocks = max(0.0, cash_balance - target_cash - voo_deficit)
+        
+        st.markdown("**Current Portfolio Status**")
+        a1, a2, a3 = st.columns(3)
+        a1.metric(f"📈 VOO (Target: 60%)", voo_status)
+        a2.metric(f"💵 Cash (Target: 10%)", cash_status)
+        a3.metric(f"🎯 Available for Stocks", f"${available_stocks:,.2f}")
     
     max_per_stock = total_capital * 0.025 
     st.caption(f"💡 **Max Position Rule:** 2.5% maximum buy for any single stock is **${max_per_stock:,.2f}** based on Target Portfolio Value.")

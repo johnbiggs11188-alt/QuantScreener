@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import glob
 import os
+from streamlit_gsheets import GSheetsConnection
 
 st.set_page_config(page_title="Global Quant Screener", page_icon="📈", layout="wide")
 st.title("📈 Global Quant Screener")
@@ -118,15 +119,12 @@ with tab4:
     if dash_data is not None and not dash_data.empty:
         current_balance += dash_data['Current Balance'].sum()
         
-        # Extract VOO for waterfall math
         voo_row = dash_data[dash_data['Symbol'] == 'VOO']
         if not voo_row.empty:
             voo_balance = voo_row.iloc[0]['Current Balance']
         
-        # Calculate the % of Portfolio
         dash_data['% of Portfolio'] = (dash_data['Current Balance'] / current_balance) * 100
         
-        # Reorder and rename columns
         display_df = dash_data[["Symbol", "Current Balance", "% of Portfolio", "Quantity", "Price", "$ Change", "% Change", "$ Unrealized"]].copy()
         display_df.columns = ["SYMBOL", "CURRENT BALANCE", "% OF PORTFOLIO", "QUANTITY", "CURRENT PRICE", "DAY $ CHANGE", "DAY % CHANGE", "LIFETIME GAIN/LOSS"]
         
@@ -170,30 +168,38 @@ with tab4:
     st.write("---")
     st.markdown("### 💰 Waterfall Capital Allocation")
     
-    col_bal, col_add, col_tot = st.columns(3)
-    col_bal.metric("Total Equity (Live)", f"${current_balance:,.2f}")
-    new_deposit = col_add.number_input("New Deposit to Add ($)", min_value=0.0, value=300.0, step=50.0)
+    st.metric("Total Equity (Live)", f"${current_balance:,.2f}")
     
+    conn = st.connection("gsheets", type=GSheetsConnection)
+    
+    try:
+        sheet_data = conn.read(usecols=[2], value_render_option="UNFORMATTED_VALUE")
+        voo_deposits = sheet_data.iloc[:, 0].dropna()
+        voo_deposits = voo_deposits[voo_deposits != ""]
+        new_deposit = float(voo_deposits.iloc[-1]) if not voo_deposits.empty else 0.0
+        
+        st.success(f"✅ Automatically loaded this week's deposit from Google Sheets: **${new_deposit:,.2f}**")
+        
+    except Exception as e:
+        st.error("Could not connect to Google Sheets. Using $0.00 deposit.")
+        new_deposit = 0.0
+
     total_capital = current_balance + new_deposit
-    col_tot.metric("Target Portfolio Value", f"${total_capital:,.2f}")
+    st.metric("Target Portfolio Value", f"${total_capital:,.2f}")
     
-    # --- WATERFALL MATH ---
     target_voo = total_capital * 0.60
     target_cash = total_capital * 0.10
     
     remaining_deposit = new_deposit
     
-    # Priority 1: VOO (Up to 60%)
     voo_deficit = max(0.0, target_voo - voo_balance)
     alloc_voo = min(remaining_deposit, voo_deficit)
     remaining_deposit -= alloc_voo
     
-    # Priority 2: Cash (Up to 10%)
     cash_deficit = max(0.0, target_cash - cash_balance)
     alloc_cash = min(remaining_deposit, cash_deficit)
     remaining_deposit -= alloc_cash
     
-    # Priority 3: Stocks (Whatever is left)
     alloc_stocks = remaining_deposit
     
     st.markdown("**New Deposit Routing**")

@@ -173,7 +173,9 @@ with tab4:
     conn = st.connection("gsheets", type=GSheetsConnection)
     
     try:
-        sheet_data = conn.read(usecols=[2], value_render_option="UNFORMATTED_VALUE")
+        # Removed the unsupported parameter here:
+        sheet_data = conn.read(usecols=[2])
+        
         voo_deposits = sheet_data.iloc[:, 0].dropna()
         voo_deposits = voo_deposits[voo_deposits != ""]
         new_deposit = float(voo_deposits.iloc[-1]) if not voo_deposits.empty else 0.0

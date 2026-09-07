@@ -180,8 +180,8 @@ with tab4:
         
         st.success(f"✅ Automatically loaded this week's deposit from Google Sheets: **${new_deposit:,.2f}**")
         
-    except Exception as e:
-        st.error("Could not connect to Google Sheets. Using $0.00 deposit.")
+   except Exception as e:
+        st.error(f"Google Sheets Error: {e}")
         new_deposit = 0.0
 
     total_capital = current_balance + new_deposit

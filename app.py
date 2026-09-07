@@ -180,7 +180,7 @@ with tab4:
         
         st.success(f"✅ Automatically loaded this week's deposit from Google Sheets: **${new_deposit:,.2f}**")
         
-   except Exception as e:
+    except Exception as e:
         st.error(f"Google Sheets Error: {e}")
         new_deposit = 0.0
 

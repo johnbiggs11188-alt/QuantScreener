@@ -1,0 +1,70 @@
+Ticker,Final_Grade,Floor Tier,Status,Close Price,FCF_Yield,ROA,EV_EBITDA
+LULU,88.6,🟢🟢 Deep Floor,Confirmed (Previous),120.26,0.10561429359313604,0.14401,4.814
+CTSH,79.1,🟢 Oversold Floor,Confirmed (Previous),64.58,0.08312452383211844,0.10735,6.767
+ACN,78.8,🟢🟢 Deep Floor,Confirmed (Previous),189.76,0.1089377956933328,0.10903,8.398
+SONY,77.0,⚪ Standard (< 0),Confirmed (Previous),24.56,24.08748161343242,0.042529996,0.118
+EPAM,75.7,🟢🟢 Deep Floor,Confirmed (Previous),117.83,0.10639122849467816,0.08453,6.997
+G,74.6,🟢 Oversold Floor,Confirmed (Previous),37.78,0.08203445452477913,0.091759995,7.595
+CMCSA,72.0,🟢 Oversold Floor,Confirmed (Previous),26.62,0.14159754055596935,0.043080002,5.055
+BEKE,71.6,⚪ Standard (< 0),Confirmed (Previous),17.19,0.23247721593466986,0.02567,-2.383
+EXE,71.4,⚪ Standard (< 0),Live (Unfinished),94.75,0.06686643922775748,0.08486,3.793
+PTC,71.2,🟢 Oversold Floor,Confirmed (Previous),155.74,0.07326145257605454,0.11537,11.93
+VNT,70.1,⚪ Standard (< 0),Confirmed (Previous),32.19,0.07990027485630827,0.0863,8.435
+INGR,69.6,🟢🟢 Deep Floor,Confirmed (Previous),103.46,0.07226004489661109,0.07334,6.247
+PPC,69.0,🟢 Oversold Floor,Live (Unfinished),30.26,0.07057790408955397,0.08015,5.567
+STEP,68.8,⚪ Standard (< 0),Live (Unfinished),49.12,0.44479515413614973,-0.11644,-5.968
+TAP,68.8,🟢 Oversold Floor,Confirmed (Previous),39.76,0.1293123794183762,0.03793,5.851
+GTM,68.3,🟢🟢 Deep Floor,Confirmed (Previous),4.24,0.319294382092037,0.02918,7.311
+NVR,68.1,🟢🟢 Deep Floor,Live (Unfinished),6179.05,0.05546308387230761,0.16547,10.556
+AGNT,67.8,🟢🟢 Deep Floor,Live (Unfinished),3.87,0.15284237050404278,-0.0141199995,-231.179
+BCE,67.4,⚪ Standard (< 0),Live (Unfinished),23.39,0.11934750975910419,0.04423,7.648
+PSKY,67.2,⚪ Standard (< 0),Live (Unfinished),10.48,1.4984142217598688,0.027490001,8.236
+INTU,66.5,🟢🟢 Deep Floor,Confirmed (Previous),359.3,0.07436063424883094,0.1047,12.382
+LDOS,66.4,⚪ Standard (< 0),Live (Unfinished),127.98,0.07143879291100684,0.089099996,9.295
+LKQ,65.1,🟢🟢 Deep Floor,Live (Unfinished),24.16,0.11856382640720846,0.03995,7.851
+INFY,62.3,🟢🟢 Deep Floor,Confirmed (Previous),12.06,0.07127934358358558,0.15297,19.236
+UHS,60.9,⚪ Standard (< 0),Confirmed (Previous),170.13,0.04840780281107587,0.08321,5.721
+OTIS,60.4,🟢🟢 Deep Floor,Confirmed (Previous),71.13,0.05438108336925555,0.14249,12.943
+EPAC,59.7,🟢 Oversold Floor,Confirmed (Previous),37.32,0.05594012300502276,0.10475001,12.086
+BR,59.3,🟢 Oversold Floor,Confirmed (Previous),181.26,0.06235383113173992,0.09295,12.327
+OPCH,59.3,⚪ Standard (< 0),Confirmed (Previous),23.45,0.07245461776484306,0.061690003,11.382
+ADSK,58.3,⚪ Standard (< 0),Confirmed (Previous),258.53,0.07088469175567322,0.11472999,19.15
+MZTI,57.7,🟢🟢 Deep Floor,Confirmed (Previous),111.58,0.047238047253082616,0.10298,9.823
+PEGA,57.1,⚪ Standard (< 0),Live (Unfinished),36.0,0.08582575307368796,0.0907,26.622
+SNY,54.8,🟢 Oversold Floor,Confirmed (Previous),44.36,0.06171649013586329,0.05093,8.857
+NX,53.0,⚪ Standard (< 0),Confirmed (Previous),19.22,0.06658065454031499,0.03518,8.291
+HLNE,52.5,🟢🟢 Deep Floor,Confirmed (Previous),108.82,0.043481843557010555,0.10783,12.707
+CPRT,51.2,🟢🟢 Deep Floor,Confirmed (Previous),32.99,0.036275697757455476,0.11336,12.431
+GEHC,50.6,⚪ Standard (< 0),Confirmed (Previous),71.23,0.054907496753632476,0.05131,10.499
+DOCS,50.3,⚪ Standard (< 0),Confirmed (Previous),26.71,0.052551486066950745,0.10949001,17.88
+ALG,47.8,⚪ Standard (< 0),Live (Unfinished),168.75,0.04435968973927564,0.05638,10.336
+PBH,46.4,🟢🟢 Deep Floor,Confirmed (Previous),51.78,0.06590662752937408,0.04578,12.973
+RMD,46.2,⚪ Standard (< 0),Confirmed (Previous),240.1,0.02981977872036625,0.14002,14.807
+DLB,44.3,🟢🟢 Deep Floor,Confirmed (Previous),61.56,0.05549435292852466,0.05152,14.808
+BAM,44.1,⚪ Standard (< 0),Confirmed (Previous),51.5,0.03549765505918744,0.13036999,21.513
+JKHY,43.8,⚪ Standard (< 0),Confirmed (Previous),167.3,0.031110270775491798,0.12989001,16.211
+META,42.6,⚪ Standard (< 0),Live (Unfinished),650.33,0.013019430472244905,0.14591,15.171
+NKE,42.5,🟢🟢 Deep Floor,Confirmed (Previous),38.65,0.03445811026411505,0.06971,11.431
+STE,40.7,⚪ Standard (< 0),Confirmed (Previous),231.93,0.03881683065676012,0.06797,13.588
+BSX,40.4,🟢🟢 Deep Floor,Confirmed (Previous),48.3,0.03929157609391423,0.06191,13.096
+LYFT,40.1,⚪ Standard (< 0),Confirmed (Previous),16.9,0.20274651551555425,-0.0086199995,111.246
+SBAC,37.5,⚪ Standard (< 0),Live (Unfinished),185.13,0.03826504621211348,0.08406,18.66
+TRMB,37.5,⚪ Standard (< 0),Live (Unfinished),57.72,0.05098207946443054,0.04804,16.474
+UFPI,37.1,🟢 Oversold Floor,Confirmed (Previous),84.16,0.026641818341175225,0.04756,8.798
+ADMA,35.5,🟢🟢 Deep Floor,Confirmed (Previous),9.39,0.026371127790458908,0.2178,195.594
+OLED,35.2,🟢🟢 Deep Floor,Confirmed (Previous),83.17,0.02896078966359476,0.06767,12.74
+SPOT,34.5,⚪ Standard (< 0),Confirmed (Previous),543.62,0.014310050248963192,0.12186,37.548
+DIS,34.3,⚪ Standard (< 0),Confirmed (Previous),107.55,0.026445472158257547,0.048070002,10.99
+SAP,33.5,⚪ Standard (< 0),Confirmed (Previous),220.89,0.03820844035781181,0.0954,284.593
+KAI,33.5,⚪ Standard (< 0),Confirmed (Previous),299.14,0.03252527948005791,0.06787,15.663
+LNN,32.2,⚪ Standard (< 0),Live (Unfinished),117.77,0.03453734406936927,0.04664,13.954
+COIN,29.0,⚪ Standard (< 0),Live (Unfinished),176.85,0.0571900033551444,0.01116,61.945
+ICE,28.4,⚪ Standard (< 0),Confirmed (Previous),160.7,0.04095221964446099,0.02172,15.942
+HLI,27.7,🟢 Oversold Floor,Live (Unfinished),136.98,0.0,0.11173,100.0
+ARLO,22.8,⚪ Standard (< 0),Confirmed (Previous),13.15,0.0452759981784617,0.0136899995,87.311
+FRPT,17.2,⚪ Standard (< 0),Confirmed (Previous),69.86,0.006160661332440663,0.03486,16.905
+GWRE,16.8,⚪ Standard (< 0),Confirmed (Previous),204.75,0.028498449218903085,0.03536,65.005
+CSGP,16.2,🟢🟢 Deep Floor,Confirmed (Previous),32.07,0.0337536177989595,0.00466,30.079
+CLF,8.4,⚪ Standard (< 0),Confirmed (Previous),11.55,0.000888327899208948,-0.01706,28.382
+CG,7.2,⚪ Standard (< 0),Confirmed (Previous),48.39,0.0,0.02031,100.0
+APO,5.9,⚪ Standard (< 0),Confirmed (Previous),136.58,0.0,0.0094099995,100.0

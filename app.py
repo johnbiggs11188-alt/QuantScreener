@@ -107,7 +107,6 @@ with tab4:
     cash_balance = 0.0
     cost_dict = {}
     
-    # Read CASH and Cost Basis directly from portfolio.txt
     try:
         with open("portfolio.txt", "r") as f:
             for line in f:
@@ -135,8 +134,6 @@ with tab4:
             voo_balance = voo_row.iloc[0]['Current Balance']
         
         dash_data['% of Portfolio'] = (dash_data['Current Balance'] / current_balance) * 100
-        
-        # Map the cost basis from the dictionary to the dataframe
         dash_data['Cost Basis'] = dash_data['Symbol'].map(cost_dict).fillna(0.0)
         
         display_df = dash_data[["Symbol", "Current Balance", "% of Portfolio", "Quantity", "Cost Basis", "Price", "$ Change", "% Change", "$ Unrealized"]].copy()
@@ -188,7 +185,10 @@ with tab4:
     conn = st.connection("gsheets", type=GSheetsConnection)
     
     try:
-        sheet_data = conn.read(spreadsheet="https://docs.google.com/spreadsheets/d/19_l6dc1QIBOfVJIUtakJinhZCsUt5rGNimM4-XRUuAU/edit?usp=sharing", usecols=[2])
+        sheet_data = conn.read(
+            spreadsheet="https://docs.google.com/spreadsheets/d/19_l6dc1QIBOfVJIUtakJinhZCsUt5rGNimM4-XRUuAU/edit?usp=sharing", 
+            usecols=[2]
+        )
         voo_deposits = sheet_data.iloc[:, 0].dropna()
         voo_deposits = voo_deposits[voo_deposits != ""]
         
@@ -206,53 +206,28 @@ with tab4:
     st.write("---")
     apply_deposit = st.toggle(f"Apply new Google Sheets deposit (**${new_deposit:,.2f}**) to run waterfall math", value=False)
     
-    if apply_deposit:
-        total_capital = current_balance + new_deposit
-        st.success("✅ Deposit applied. Routing metrics updated.")
-        st.metric("Target Portfolio Value", f"${total_capital:,.2f}")
-        
-        target_voo = total_capital * 0.60
-        target_cash = total_capital * 0.10
-        
-        remaining_deposit = new_deposit
-        
-        voo_deficit = max(0.0, target_voo - voo_balance)
-        alloc_voo = min(remaining_deposit, voo_deficit)
-        remaining_deposit -= alloc_voo
-        
-        cash_deficit = max(0.0, target_cash - cash_balance)
-        alloc_cash = min(remaining_deposit, cash_deficit)
-        remaining_deposit -= alloc_cash
-        
-        alloc_stocks = remaining_deposit
-        
-        st.markdown("**New Deposit Routing**")
-        a1, a2, a3 = st.columns(3)
-        a1.metric(f"📈 To VOO (Target: 60%)", f"${alloc_voo:,.2f}")
-        a2.metric(f"💵 To Cash (Target: 10%)", f"${alloc_cash:,.2f}")
-        a3.metric(f"🎯 To Stocks (Available)", f"${alloc_stocks:,.2f}")
+    active_deposit = new_deposit if apply_deposit else 0.0
+    total_capital = current_balance + active_deposit
+    effective_cash = cash_balance + active_deposit
+    
+    target_voo = total_capital * 0.60
+    target_cash = total_capital * 0.10
+    
+    voo_deficit = max(0.0, target_voo - voo_balance)
+    cash_deficit = max(0.0, target_cash - effective_cash)
+    
+    voo_status = "✅ Good" if voo_balance >= target_voo else f"⚠️ Short ${voo_deficit:,.2f}"
+    cash_status = "✅ Good" if effective_cash >= target_cash else f"⚠️ Short ${cash_deficit:,.2f}"
+    
+    available_stocks = max(0.0, effective_cash - target_cash - voo_deficit)
 
-    else:
-        total_capital = current_balance
-        st.info("ℹ️ Deposit not applied. Showing baseline portfolio targets.")
-        st.metric("Target Portfolio Value", f"${total_capital:,.2f}")
-        
-        target_voo = total_capital * 0.60
-        target_cash = total_capital * 0.10
-        
-        voo_deficit = max(0.0, target_voo - voo_balance)
-        cash_deficit = max(0.0, target_cash - cash_balance)
-        
-        voo_status = "✅ Good" if voo_balance >= target_voo else f"⚠️ Short ${voo_deficit:,.2f}"
-        cash_status = "✅ Good" if cash_balance >= target_cash else f"⚠️ Short ${cash_deficit:,.2f}"
-        
-        available_stocks = max(0.0, cash_balance - target_cash - voo_deficit)
-        
-        st.markdown("**Current Portfolio Status**")
-        a1, a2, a3 = st.columns(3)
-        a1.metric(f"📈 VOO (Target: 60%)", voo_status)
-        a2.metric(f"💵 Cash (Target: 10%)", cash_status)
-        a3.metric(f"🎯 Available for Stocks", f"${available_stocks:,.2f}")
+    st.metric("Target Portfolio Value", f"${total_capital:,.2f}")
+    
+    st.markdown("**Current Portfolio Status**")
+    a1, a2, a3 = st.columns(3)
+    a1.metric("📈 VOO (Target: 60%)", voo_status)
+    a2.metric("💵 Cash (Target: 10%)", cash_status)
+    a3.metric("🎯 Available for Stocks", f"${available_stocks:,.2f}")
     
     max_per_stock = total_capital * 0.025 
     st.caption(f"💡 **Max Position Rule:** 2.5% maximum buy for any single stock is **${max_per_stock:,.2f}** based on Target Portfolio Value.")

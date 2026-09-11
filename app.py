@@ -210,7 +210,8 @@ with tab4:
     total_capital = current_balance + active_deposit
     effective_cash = cash_balance + active_deposit
     
-    target_voo = total_capital * 0.60
+    # Target allocations: 65% VOO, 10% Cash, 25% Stocks
+    target_voo = total_capital * 0.65
     target_cash = total_capital * 0.10
     
     voo_deficit = max(0.0, target_voo - voo_balance)
@@ -225,9 +226,9 @@ with tab4:
     
     st.markdown("**Current Portfolio Status**")
     a1, a2, a3 = st.columns(3)
-    a1.metric("📈 VOO (Target: 60%)", voo_status)
+    a1.metric("📈 VOO (Target: 65%)", voo_status)
     a2.metric("💵 Cash (Target: 10%)", cash_status)
-    a3.metric("🎯 Available for Stocks", f"${available_stocks:,.2f}")
+    a3.metric("🎯 Available for Stocks (Target: 25%)", f"${available_stocks:,.2f}")
     
     max_per_stock = total_capital * 0.025 
     st.caption(f"💡 **Max Position Rule:** 2.5% maximum buy for any single stock is **${max_per_stock:,.2f}** based on Target Portfolio Value.")

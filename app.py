@@ -48,10 +48,10 @@ selected_tier = st.sidebar.multiselect("Technical Floor Tier:", options=list(all
 selected_status = st.sidebar.multiselect("Signal Status:", options=list(all_statuses), default=list(all_statuses))
 
 tab1, tab2, tab3, tab4 = st.tabs([
-    "📅 Monthly Outlook", 
-    "🗓️ Weekly (Deep & Oversold)", 
-    "🟢 Daily Signals (Gold & Strong Green)",
-    "🚪 Portfolio Exits"
+    "Monthly", 
+    "Weekly", 
+    "Daily",
+    "Portfolio"
 ])
 
 def render_dashboard(df, filename, tab_title):
@@ -99,10 +99,10 @@ with tab2:
     render_dashboard(weekly_data, weekly_file, "Weekly")
 
 with tab3:
-    render_dashboard(daily_data, daily_file, "Daily Signals")
+    render_dashboard(daily_data, daily_file, "Daily")
 
 with tab4:
-    st.markdown("### 📊 Live Portfolio Dashboard")
+    st.markdown("### 📊 Dashboard")
     
     cash_balance = 0.0
     try:
@@ -125,8 +125,23 @@ with tab4:
         
         dash_data['% of Portfolio'] = (dash_data['Current Balance'] / current_balance) * 100
         
-        display_df = dash_data[["Symbol", "Current Balance", "% of Portfolio", "Quantity", "Price", "$ Change", "% Change", "$ Unrealized"]].copy()
-        display_df.columns = ["SYMBOL", "CURRENT BALANCE", "% OF PORTFOLIO", "QUANTITY", "CURRENT PRICE", "DAY $ CHANGE", "DAY % CHANGE", "LIFETIME GAIN/LOSS"]
+        # Dynamically find the cost column from the CSV
+        cost_col = "Cost Basis" if "Cost Basis" in dash_data.columns else "Average Cost" if "Average Cost" in dash_data.columns else "Cost" if "Cost" in dash_data.columns else None
+        
+        cols_to_pull = ["Symbol", "Current Balance", "% of Portfolio", "Quantity"]
+        if cost_col:
+            cols_to_pull.append(cost_col)
+        cols_to_pull.extend(["Price", "$ Change", "% Change", "$ Unrealized"])
+        
+        display_df = dash_data[cols_to_pull].copy()
+        
+        # Rename columns to the shortened versions requested
+        new_cols = ["SYMBOL", "BALANCE", "PORTFOLIO %", "QUANTITY"]
+        if cost_col:
+            new_cols.append("COST BASIS")
+        new_cols.extend(["CURRENT PRICE", "DAY $ CHANGE", "DAY % CHANGE", "GAIN/LOSS"])
+        
+        display_df.columns = new_cols
         
         def format_dol(val):
             if pd.isna(val): return ""
@@ -146,20 +161,26 @@ with tab4:
             if val < 0: return 'color: #FF1744;' 
             return ''
 
-        styled_dash = display_df.style.format({
-            "CURRENT BALANCE": "${:,.2f}",
-            "% OF PORTFOLIO": "{:.2f}%",
+        # Setup the format dictionary dynamically
+        format_dict = {
+            "BALANCE": "${:,.2f}",
+            "PORTFOLIO %": "{:.2f}%",
             "QUANTITY": "{:.3f}",
             "CURRENT PRICE": "${:,.2f}",
             "DAY $ CHANGE": format_dol,
             "DAY % CHANGE": format_pct,
-            "LIFETIME GAIN/LOSS": format_dol
-        })
+            "GAIN/LOSS": format_dol
+        }
+        if cost_col:
+            format_dict["COST BASIS"] = "${:,.2f}"
+
+        styled_dash = display_df.style.format(format_dict)
         
+        subset_cols = ["DAY $ CHANGE", "DAY % CHANGE", "GAIN/LOSS"]
         if hasattr(styled_dash, 'map'):
-            styled_dash = styled_dash.map(color_pnl, subset=["DAY $ CHANGE", "DAY % CHANGE", "LIFETIME GAIN/LOSS"])
+            styled_dash = styled_dash.map(color_pnl, subset=subset_cols)
         else:
-            styled_dash = styled_dash.applymap(color_pnl, subset=["DAY $ CHANGE", "DAY % CHANGE", "LIFETIME GAIN/LOSS"])
+            styled_dash = styled_dash.applymap(color_pnl, subset=subset_cols)
 
         st.dataframe(styled_dash, hide_index=True, use_container_width=True)
     else:
@@ -231,7 +252,6 @@ with tab4:
         voo_status = "✅ Good" if voo_balance >= target_voo else f"⚠️ Short ${voo_deficit:,.2f}"
         cash_status = "✅ Good" if cash_balance >= target_cash else f"⚠️ Short ${cash_deficit:,.2f}"
         
-        # Calculate how much of your current cash is allowed to be spent on stocks
         available_stocks = max(0.0, cash_balance - target_cash - voo_deficit)
         
         st.markdown("**Current Portfolio Status**")

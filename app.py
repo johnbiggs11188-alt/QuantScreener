@@ -32,8 +32,11 @@ if monthly_data is None and weekly_data is None and daily_data is None and sell_
     st.warning("No scans found. Run `python scanner.py` and `python sell_scanner.py` in your terminal.")
     st.stop()
 
-st.sidebar.header("Filter Setup")
-min_grade = st.sidebar.slider("Minimum Quant Grade", min_value=0, max_value=100, value=70, step=5)
+st.sidebar.header("🎯 Quantitative Matrix Filters")
+
+min_val = st.sidebar.slider("Min Valuation Rank (Cheapness)", min_value=0, max_value=100, value=50, step=5)
+min_qual = st.sidebar.slider("Min Quality Rank (Profitability)", min_value=0, max_value=100, value=50, step=5)
+max_leverage = st.sidebar.slider("Max Net Debt / EBITDA", min_value=0.0, max_value=3.5, value=3.5, step=0.5)
 
 all_tiers = set()
 all_statuses = set()
@@ -61,11 +64,28 @@ def render_dashboard(df, filename, tab_title):
         
     st.caption(f"Loaded data from: `{filename}`")
     
-    filtered_df = df[
-        (df['Final_Grade'] >= min_grade) & 
-        (df['Floor Tier'].isin(selected_tier)) & 
-        (df['Status'].isin(selected_status))
-    ]
+    filtered_df = df.copy()
+    
+    # Check if this CSV has the upgraded dual-rank schema or legacy schema
+    is_upgraded = 'Valuation_Rank' in filtered_df.columns and 'Quality_Rank' in filtered_df.columns
+    
+    if is_upgraded:
+        # Non-financials respect leverage slider; financials or 0-debt items pass through
+        filtered_df = filtered_df[
+            (filtered_df['Valuation_Rank'] >= min_val) & 
+            (filtered_df['Quality_Rank'] >= min_qual) &
+            ((filtered_df['NetDebt_EBITDA'] <= max_leverage) | (filtered_df['Sector'].isin(['Financial Services', 'Financials']))) &
+            (filtered_df['Floor Tier'].isin(selected_tier)) & 
+            (filtered_df['Status'].isin(selected_status))
+        ]
+    else:
+        # Fallback filter for legacy files
+        if 'Final_Grade' in filtered_df.columns:
+            filtered_df = filtered_df[
+                (filtered_df['Final_Grade'] >= min_val) & 
+                (filtered_df['Floor Tier'].isin(selected_tier)) & 
+                (filtered_df['Status'].isin(selected_status))
+            ]
     
     col1, col2, col3 = st.columns(3)
     col1.metric("Total Technical Survivors", len(df))
@@ -74,21 +94,43 @@ def render_dashboard(df, filename, tab_title):
         col3.metric("Top Ranked Setup", filtered_df.iloc[0]['Ticker'])
         
     if not filtered_df.empty:
-        st.dataframe(
-            filtered_df,
-            column_config={
-                "Ticker": st.column_config.TextColumn("Ticker", width="small"),
-                "Final_Grade": st.column_config.ProgressColumn("Quant Grade", format="%.1f", min_value=0, max_value=100),
-                "Floor Tier": st.column_config.TextColumn("Floor Tier"),
-                "Status": st.column_config.TextColumn("Status"),
-                "Close Price": st.column_config.NumberColumn("Close Price", format="$%.2f"),
-                "FCF_Yield": st.column_config.NumberColumn("FCF Yield", format="%.2f"),
-                "ROA": st.column_config.NumberColumn("ROA", format="%.2f"),
-                "EV_EBITDA": st.column_config.NumberColumn("EV/EBITDA", format="%.2f")
-            },
-            hide_index=True,
-            use_container_width=True
-        )
+        if is_upgraded:
+            st.dataframe(
+                filtered_df,
+                column_config={
+                    "Ticker": st.column_config.TextColumn("Ticker", width="small"),
+                    "Composite_Grade": st.column_config.ProgressColumn("Composite", format="%.1f", min_value=0, max_value=100),
+                    "Valuation_Rank": st.column_config.NumberColumn("Val Rank", format="%.1f"),
+                    "Quality_Rank": st.column_config.NumberColumn("Qual Rank", format="%.1f"),
+                    "Floor Tier": st.column_config.TextColumn("Floor Tier"),
+                    "Status": st.column_config.TextColumn("Status"),
+                    "Close Price": st.column_config.NumberColumn("Price", format="$%.2f"),
+                    "FCF_Yield": st.column_config.NumberColumn("FCF Yield", format="%.2f"),
+                    "EV_EBITDA": st.column_config.NumberColumn("EV/EBITDA", format="%.2f"),
+                    "NetDebt_EBITDA": st.column_config.NumberColumn("Net Debt/EBITDA", format="%.2f"),
+                    "Op_Margin": st.column_config.NumberColumn("Op Margin", format="%.2f"),
+                    "ROA": st.column_config.NumberColumn("ROA", format="%.2f"),
+                    "Sector": st.column_config.TextColumn("Sector")
+                },
+                hide_index=True,
+                use_container_width=True
+            )
+        else:
+            st.dataframe(
+                filtered_df,
+                column_config={
+                    "Ticker": st.column_config.TextColumn("Ticker", width="small"),
+                    "Final_Grade": st.column_config.ProgressColumn("Quant Grade", format="%.1f", min_value=0, max_value=100),
+                    "Floor Tier": st.column_config.TextColumn("Floor Tier"),
+                    "Status": st.column_config.TextColumn("Status"),
+                    "Close Price": st.column_config.NumberColumn("Close Price", format="$%.2f"),
+                    "FCF_Yield": st.column_config.NumberColumn("FCF Yield", format="%.2f"),
+                    "ROA": st.column_config.NumberColumn("ROA", format="%.2f"),
+                    "EV_EBITDA": st.column_config.NumberColumn("EV/EBITDA", format="%.2f")
+                },
+                hide_index=True,
+                use_container_width=True
+            )
     else:
         st.info("No stocks meet the current filter criteria.")
 

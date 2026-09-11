@@ -117,43 +117,93 @@ def safe_get(info_dict, key, default=0.0):
 
 def generate_quant_grades(survivors_dict):
     raw_data = []
+    
     for ticker, meta in survivors_dict.items():
         try:
             info = yf.Ticker(ticker).info
-            debt_eq = safe_get(info, 'debtToEquity', 0) 
-            fcf = safe_get(info, 'freeCashflow', 0)
+            sector = info.get('sector', 'Unknown')
             
-            if debt_eq > 200 or fcf < 0:
-                continue 
-                
-            market_cap = safe_get(info, 'marketCap', 1)
+            # --- 1. CORE FINANCIAL EXTRACTION ---
+            fcf = safe_get(info, 'freeCashflow', 0.0)
+            market_cap = safe_get(info, 'marketCap', 1.0)
+            total_debt = safe_get(info, 'totalDebt', 0.0)
+            cash = safe_get(info, 'totalCash', 0.0)
+            ebitda = safe_get(info, 'ebitda', 0.0)
+            ocf = safe_get(info, 'operatingCashflow', 0.0)
+            net_income = safe_get(info, 'netIncomeToCommon', 0.0)
+            gross_margin = safe_get(info, 'grossMargins', 0.0)
+            op_margin = safe_get(info, 'operatingMargins', 0.0)
+            roa = safe_get(info, 'returnOnAssets', 0.0)
+            ev_ebitda = safe_get(info, 'enterpriseToEbitda', 100.0)
+            
+            net_debt = max(0.0, total_debt - cash)
+            net_debt_to_ebitda = (net_debt / ebitda) if ebitda > 0 else 999.0
+
+            # --- 2. THE BINARY GATEKEEPER ---
+            if sector in ['Financial Services', 'Financials']:
+                # Financial sector checks (Debt/EBITDA not applicable)
+                roe = safe_get(info, 'returnOnEquity', 0.0)
+                pb = safe_get(info, 'priceToBook', 99.0)
+                if roe < 0.05 or pb > 2.0 or net_income <= 0:
+                    continue
+            else:
+                # Non-Financials: Solvency, Cash Flow, and Quality gates
+                if fcf <= 0:
+                    continue
+                if ocf <= 0:
+                    continue
+                if net_debt_to_ebitda > 3.5:
+                    continue
+                if (ocf < net_income) and (net_income > 0):
+                    continue
+                if gross_margin < 0.10:
+                    continue
+
+            # --- 3. SURVIVOR RECORD ---
+            fcf_yield = fcf / market_cap if market_cap > 1 else 0.0
+            
             raw_data.append({
                 'Ticker': ticker,
+                'Sector': sector,
                 'Floor Tier': meta['Tier'],
                 'Status': meta['Status'],
                 'Close Price': meta['Close'],
-                'FCF_Yield': fcf / market_cap if market_cap > 1 else 0,
-                'ROA': safe_get(info, 'returnOnAssets', 0),
-                'EV_EBITDA': safe_get(info, 'enterpriseToEbitda', 100)
+                'FCF_Yield': fcf_yield,
+                'EV_EBITDA': ev_ebitda,
+                'NetDebt_EBITDA': round(net_debt_to_ebitda, 2),
+                'ROA': roa,
+                'Op_Margin': op_margin,
+                'Gross_Margin': gross_margin
             })
         except Exception:
             pass
-        time.sleep(1.5)
+        time.sleep(0.5)
         
     df = pd.DataFrame(raw_data)
     if df.empty: 
         return df
+
+    # --- 4. DUAL-DIMENSION PERCENTILE MATRIX (0 - 100) ---
+    # Valuation: Higher FCF Yield is better, Lower EV/EBITDA is better
+    fcf_rank = df['FCF_Yield'].rank(pct=True) * 100
+    ev_rank = df['EV_EBITDA'].rank(pct=True, ascending=False) * 100
+    df['Valuation_Rank'] = ((fcf_rank * 0.5) + (ev_rank * 0.5)).round(1)
+
+    # Quality: Higher Operating Margin & Higher ROA are better
+    op_rank = df['Op_Margin'].rank(pct=True) * 100
+    roa_rank = df['ROA'].rank(pct=True) * 100
+    df['Quality_Rank'] = ((op_rank * 0.5) + (roa_rank * 0.5)).round(1)
+
+    # Composite Dual Score for sorting
+    df['Composite_Grade'] = ((df['Valuation_Rank'] * 0.5) + (df['Quality_Rank'] * 0.5)).round(1)
+
+    output_cols = [
+        'Ticker', 'Composite_Grade', 'Valuation_Rank', 'Quality_Rank',
+        'Floor Tier', 'Status', 'Close Price', 'FCF_Yield', 'EV_EBITDA',
+        'NetDebt_EBITDA', 'Op_Margin', 'ROA', 'Sector'
+    ]
     
-    df['FCF_Score'] = df['FCF_Yield'].rank(pct=True) * 100
-    df['ROA_Score'] = df['ROA'].rank(pct=True) * 100
-    df['EV_Score'] = df['EV_EBITDA'].rank(pct=True, ascending=False) * 100
-    
-    df['Final_Grade'] = (df['FCF_Score'] * 0.40) + (df['ROA_Score'] * 0.30) + (df['EV_Score'] * 0.30)
-    df['Final_Grade'] = df['Final_Grade'].round(1)
-    
-    return df[['Ticker', 'Final_Grade', 'Floor Tier', 'Status', 'Close Price', 'FCF_Yield', 'ROA', 'EV_EBITDA']].sort_values(
-        by=['Final_Grade'], ascending=False
-    ).reset_index(drop=True)
+    return df[output_cols].sort_values(by=['Composite_Grade'], ascending=False).reset_index(drop=True)
 
 if __name__ == "__main__":
     today = datetime.now().strftime("%Y-%m-%d")

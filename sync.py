@@ -1,5 +1,6 @@
 import os
 import subprocess
+import sys
 
 def load_portfolio(filename="portfolio.txt"):
     portfolio = {}
@@ -26,7 +27,7 @@ def main():
     if not portfolio:
         return
 
-    print("\n--- 🏦 Friday Portfolio Sync ---")
+    print("\n--- 🏦 Portfolio Sync ---")
     print("Press Enter on any prompt to skip and keep the current value.\n")
     
     # 1. Update Cash
@@ -66,12 +67,33 @@ def main():
             portfolio[ticker] = {'qty': new_qty, 'cost': new_cost}
             print(f"✅ Updated {ticker}.")
 
-    # 4. Save and Execute
+    # 4. Save and Route Execution
     save_portfolio(portfolio)
     print("\n💾 portfolio.txt updated successfully!")
     
-    print("🚀 Launching fresh scan...")
-    subprocess.run(["./fresh_scan.sh"])
+    # Check for terminal flag (e.g. `python sync.py --quick`)
+    quick_mode = "--quick" in sys.argv or "--sell" in sys.argv
+    
+    if not quick_mode:
+        print("\nChoose an action:")
+        print(" [1] Quick Sell/Update (Only refresh portfolio & push to GitHub in ~5s)")
+        print(" [2] Full Scan (Run complete Friday 1,600-ticker screener)")
+        choice = input("Enter 1 or 2 [default: 1]: ").strip()
+        if choice != "2":
+            quick_mode = True
+
+    if quick_mode:
+        print("\n⚡ Running quick portfolio refresh...")
+        subprocess.run(["python", "sell_scanner.py"], check=True)
+        
+        print("📤 Pushing portfolio changes to GitHub...")
+        subprocess.run(["git", "add", "portfolio.txt"], check=True)
+        subprocess.run(["git", "commit", "-m", "Quick portfolio balance update"], check=True)
+        subprocess.run(["git", "push"], check=True)
+        print("✅ Dashboard updated in cloud successfully!")
+    else:
+        print("\n🚀 Launching fresh full scan...")
+        subprocess.run(["./fresh_scan.sh"])
 
 if __name__ == "__main__":
     main()

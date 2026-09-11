@@ -1,1 +1,4 @@
-Ticker,Close Price,Sell Alerts,Daily WT1,StochRSI
+Ticker,Close Price,Sell Alerts,Weekly WT1,Weekly StochRSI
+BSX,42.98,🔴 Sell 2: Weekly Red Dot (Current Week),-24.3,64.3
+SNAP,5.68,📈 Sell 2: Weekly StochRSI >= 99,21.0,100.0
+ZTS,72.97,🔴 Sell 2: Weekly Red Dot (Current Week),-36.6,80.7

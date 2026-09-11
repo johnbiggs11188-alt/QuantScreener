@@ -1,23 +1,13 @@
-Ticker,Final_Grade,Floor Tier,Status,Close Price,FCF_Yield,ROA,EV_EBITDA
-ABEV,93.2,🟢 Oversold Floor,Confirmed (Previous),3.02,0.42697125242297534,0.10296,1.201
-APTV,84.5,🟢🟢 Deep Floor,Live (Unfinished),45.92,0.16942088279284986,0.067150004,4.457
-CRUS,79.1,🟢🟢 Deep Floor,Live (Unfinished),120.26,0.07481532373267867,0.12163,9.676
-TTD,76.8,🟢🟢 Deep Floor,Confirmed (Previous),14.43,0.08688560509939068,0.06252,7.898
-NXPI,74.5,🟢 Oversold Floor,Live (Unfinished),238.4,0.059158066087563924,0.10457,12.869
-OLN,67.7,🟢🟢 Deep Floor,Live (Unfinished),17.3,0.1583506807401303,0.01074,8.278
-AROC,65.9,🟢 Oversold Floor,Live (Unfinished),32.76,0.042079901621150585,0.08123,9.403
-HWKN,61.8,🟢🟢 Deep Floor,Confirmed (Previous),129.13,0.0313186466426785,0.07048,8.307
-SEDG,58.6,🟢 Oversold Floor,Live (Unfinished),35.03,0.05284373468960629,-0.03835,-17.518
-WING,57.3,🟢🟢 Deep Floor,Live (Unfinished),119.26,0.030331505590041566,0.18971,17.758
-GPI,55.9,🟢🟢 Deep Floor,Confirmed (Previous),300.76,0.04030594666195205,0.05499,8.69
-WSO,54.1,🟢🟢 Deep Floor,Confirmed (Previous),315.13,0.03698365799331139,0.08369,17.896
-SGI,53.4,🟢 Oversold Floor,Confirmed (Previous),69.87,0.04877080223553498,0.05534,15.865
-APP,52.7,🟢🟢 Deep Floor,Live (Unfinished),324.08,0.0291696990851458,0.4646,19.521
-CWEN,50.9,🟢 Oversold Floor,Live (Unfinished),31.23,0.05480800873914842,0.00975,14.718
-PRIM,36.8,🟢 Oversold Floor,Live (Unfinished),75.7,0.01951621140231721,0.029879998,15.508
-WMT,30.0,🟢🟢 Deep Floor,Live (Unfinished),106.61,0.008400187259557141,0.06414,20.624
-MIR,26.4,🟢🟢 Deep Floor,Confirmed (Previous),16.93,0.028709257785941526,0.0143,21.25
-BWXT,24.3,🟢🟢 Deep Floor,Live (Unfinished),150.21,0.010565036203203896,0.05534,32.283
-GME,22.7,🟢🟢 Deep Floor,Confirmed (Previous),19.16,0.008098267925586659,0.02865,18.9
-IPGP,17.3,🟢🟢 Deep Floor,Confirmed (Previous),78.0,0.013117226929691462,0.0097,23.726
-WD,5.9,🟢🟢 Deep Floor,Live (Unfinished),40.84,0.0,0.008590001,100.0
+Ticker,Composite_Grade,Valuation_Rank,Quality_Rank,Floor Tier,Status,Close Price,FCF_Yield,EV_EBITDA,NetDebt_EBITDA,Op_Margin,ROA,Sector
+ABEV,87.5,100.0,75.0,🟢 Oversold Floor,Confirmed (Previous),3.02,0.4265471227753336,1.201,0.0,0.23743,0.10296,Consumer Defensive
+CRUS,73.0,66.7,79.2,🟢🟢 Deep Floor,Live (Unfinished),118.79,0.07575374353030191,9.676,0.0,0.18367,0.12163,Technology
+NXPI,70.8,58.3,83.3,🟢 Oversold Floor,Live (Unfinished),236.62,0.05958058657281172,12.869,1.53,0.30406,0.10457,Technology
+APTV,68.8,91.7,45.8,🟢🟢 Deep Floor,Live (Unfinished),45.54,0.17089038874352042,4.457,1.52,0.12675999,0.067150004,Consumer Cyclical
+AROC,68.8,62.5,75.0,🟢 Oversold Floor,Live (Unfinished),32.77,0.041996437972010976,9.403,2.76,0.35931998,0.08123,Energy
+APP,66.6,33.3,100.0,🟢🟢 Deep Floor,Live (Unfinished),323.96,0.02921922268899656,19.521,0.09,0.77678,0.4646,Communication Services
+TTD,62.5,83.3,41.7,🟢🟢 Deep Floor,Confirmed (Previous),14.43,0.08652206755521676,7.898,0.0,0.14205,0.06252,Communication Services
+WSO,50.0,45.8,54.2,🟢🟢 Deep Floor,Confirmed (Previous),315.13,0.037313214852895626,17.896,0.1,0.1094,0.08369,Industrials
+HWKN,47.9,58.3,37.5,🟢🟢 Deep Floor,Confirmed (Previous),129.13,0.03141709346915102,8.307,0.53,0.09476,0.07048,Basic Materials
+BWXT,18.8,12.5,25.0,🟢🟢 Deep Floor,Live (Unfinished),150.12,0.010587549953744533,32.283,2.96,0.10393,0.05534,Industrials
+WMT,18.8,16.7,20.8,🟢🟢 Deep Floor,Live (Unfinished),107.15,0.008358809637803895,20.624,1.44,0.0345,0.06414,Consumer Defensive
+IPGP,16.6,20.8,12.5,🟢🟢 Deep Floor,Confirmed (Previous),78.0,0.013318930326833345,23.726,0.0,0.05904,0.0097,Technology

@@ -105,11 +105,22 @@ with tab4:
     st.markdown("### 📊 Dashboard")
     
     cash_balance = 0.0
+    cost_dict = {}
+    
+    # Read CASH and Cost Basis directly from portfolio.txt
     try:
         with open("portfolio.txt", "r") as f:
             for line in f:
-                if line.startswith("CASH"):
-                    cash_balance = float(line.split(',')[1].strip())
+                if line.strip():
+                    parts = line.split(',')
+                    if len(parts) >= 3:
+                        sym = parts[0].strip()
+                        qty = float(parts[1].strip())
+                        cost = float(parts[2].strip())
+                        if sym == "CASH":
+                            cash_balance = qty
+                        else:
+                            cost_dict[sym] = cost
     except:
         pass
 
@@ -125,23 +136,11 @@ with tab4:
         
         dash_data['% of Portfolio'] = (dash_data['Current Balance'] / current_balance) * 100
         
-        # Dynamically find the cost column from the CSV
-        cost_col = "Cost Basis" if "Cost Basis" in dash_data.columns else "Average Cost" if "Average Cost" in dash_data.columns else "Cost" if "Cost" in dash_data.columns else None
+        # Map the cost basis from the dictionary to the dataframe
+        dash_data['Cost Basis'] = dash_data['Symbol'].map(cost_dict).fillna(0.0)
         
-        cols_to_pull = ["Symbol", "Current Balance", "% of Portfolio", "Quantity"]
-        if cost_col:
-            cols_to_pull.append(cost_col)
-        cols_to_pull.extend(["Price", "$ Change", "% Change", "$ Unrealized"])
-        
-        display_df = dash_data[cols_to_pull].copy()
-        
-        # Rename columns to the shortened versions requested
-        new_cols = ["SYMBOL", "BALANCE", "PORTFOLIO %", "QUANTITY"]
-        if cost_col:
-            new_cols.append("COST BASIS")
-        new_cols.extend(["CURRENT PRICE", "DAY $ CHANGE", "DAY % CHANGE", "GAIN/LOSS"])
-        
-        display_df.columns = new_cols
+        display_df = dash_data[["Symbol", "Current Balance", "% of Portfolio", "Quantity", "Cost Basis", "Price", "$ Change", "% Change", "$ Unrealized"]].copy()
+        display_df.columns = ["SYMBOL", "BALANCE", "PORTFOLIO %", "QUANTITY", "COST BASIS", "CURRENT PRICE", "DAY $ CHANGE", "DAY % CHANGE", "GAIN/LOSS"]
         
         def format_dol(val):
             if pd.isna(val): return ""
@@ -161,26 +160,21 @@ with tab4:
             if val < 0: return 'color: #FF1744;' 
             return ''
 
-        # Setup the format dictionary dynamically
-        format_dict = {
+        styled_dash = display_df.style.format({
             "BALANCE": "${:,.2f}",
             "PORTFOLIO %": "{:.2f}%",
             "QUANTITY": "{:.3f}",
+            "COST BASIS": "${:,.2f}",
             "CURRENT PRICE": "${:,.2f}",
             "DAY $ CHANGE": format_dol,
             "DAY % CHANGE": format_pct,
             "GAIN/LOSS": format_dol
-        }
-        if cost_col:
-            format_dict["COST BASIS"] = "${:,.2f}"
-
-        styled_dash = display_df.style.format(format_dict)
+        })
         
-        subset_cols = ["DAY $ CHANGE", "DAY % CHANGE", "GAIN/LOSS"]
         if hasattr(styled_dash, 'map'):
-            styled_dash = styled_dash.map(color_pnl, subset=subset_cols)
+            styled_dash = styled_dash.map(color_pnl, subset=["DAY $ CHANGE", "DAY % CHANGE", "GAIN/LOSS"])
         else:
-            styled_dash = styled_dash.applymap(color_pnl, subset=subset_cols)
+            styled_dash = styled_dash.applymap(color_pnl, subset=["DAY $ CHANGE", "DAY % CHANGE", "GAIN/LOSS"])
 
         st.dataframe(styled_dash, hide_index=True, use_container_width=True)
     else:

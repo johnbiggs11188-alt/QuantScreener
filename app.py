@@ -188,7 +188,7 @@ with tab4:
     conn = st.connection("gsheets", type=GSheetsConnection)
     
     try:
-        sheet_data = conn.read(usecols=[2])
+        sheet_data = conn.read(spreadsheet="https://docs.google.com/spreadsheets/d/19_l6dc1QIBOfVJIUtakJinhZCsUt5rGNimM4-XRUuAU/edit?usp=sharing", usecols=[2])
         voo_deposits = sheet_data.iloc[:, 0].dropna()
         voo_deposits = voo_deposits[voo_deposits != ""]
         

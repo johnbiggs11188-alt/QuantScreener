@@ -2,11 +2,13 @@ import streamlit as st
 import pandas as pd
 import glob
 import os
+import yfinance as yf
 from streamlit_gsheets import GSheetsConnection
 
 st.set_page_config(page_title="Global Quant Screener", page_icon="📈", layout="wide")
 st.title("📈 Global Quant Screener")
 
+# --- DATA LOADERS FOR SCREENER RESULTS ---
 def load_latest_results(timeframe):
     list_of_files = glob.glob(f'screener_results_{timeframe}_*.csv')
     if not list_of_files:
@@ -14,24 +16,103 @@ def load_latest_results(timeframe):
     latest_file = sorted(list_of_files)[-1] 
     return pd.read_csv(latest_file), latest_file
 
-def load_portfolio_files():
-    dash_files = glob.glob('portfolio_dashboard_*.csv')
-    dash_data = pd.read_csv(sorted(dash_files)[-1]) if dash_files else None
-    
+def load_sell_signals():
     sell_files = glob.glob('sell_signals_*.csv')
     sell_data = pd.read_csv(sorted(sell_files)[-1]) if sell_files else None
+    return sell_data
+
+# --- LIVE PORTFOLIO BUILDER (CACHED FOR 60 SECONDS) ---
+@st.cache_data(ttl=60)
+def get_live_portfolio_data():
+    portfolio = []
+    cash_balance = 0.0
+    cost_dict = {}
+
+    if not os.path.exists("portfolio.txt"):
+        return None, 0.0, 0.0, None
+
+    with open("portfolio.txt", "r") as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            parts = line.split(',')
+            sym = parts[0].strip().upper()
+            qty = float(parts[1].strip()) if len(parts) > 1 else 0.0
+            cost = float(parts[2].strip()) if len(parts) > 2 else 0.0
+
+            if sym == "CASH":
+                cash_balance = qty
+            else:
+                portfolio.append({'ticker': sym, 'shares': qty, 'cost': cost})
+                cost_dict[sym] = cost
+
+    if not portfolio:
+        return None, cash_balance, 0.0, cost_dict
+
+    tickers = [p['ticker'] for p in portfolio]
     
-    return dash_data, sell_data
+    # Download latest 5 days to guarantee current and previous closes
+    data = yf.download(tickers, period="5d", interval="1d", auto_adjust=True, progress=False)
+
+    rows = []
+    total_stock_balance = 0.0
+    voo_balance = 0.0
+
+    for p in portfolio:
+        sym = p['ticker']
+        shares = p['shares']
+        cost = p['cost']
+
+        try:
+            if len(tickers) == 1:
+                close_series = data['Close'].dropna()
+            else:
+                close_series = data['Close'][sym].dropna()
+
+            curr_price = float(close_series.iloc[-1])
+            prev_price = float(close_series.iloc[-2]) if len(close_series) >= 2 else curr_price
+        except Exception:
+            curr_price = cost
+            prev_price = cost
+
+        day_change_dol = curr_price - prev_price
+        day_change_pct = (day_change_dol / prev_price) * 100 if prev_price > 0 else 0.0
+        balance = shares * curr_price
+        total_stock_balance += balance
+
+        if sym == "VOO":
+            voo_balance = balance
+
+        unrealized_dol = (balance - (shares * cost)) if cost > 0 else 0.0
+
+        rows.append({
+            "Symbol": sym,
+            "Price": curr_price,
+            "$ Change": day_change_dol,
+            "% Change": day_change_pct,
+            "Quantity": shares,
+            "Cost Basis": cost,
+            "$ Unrealized": unrealized_dol,
+            "Current Balance": balance
+        })
+
+    df = pd.DataFrame(rows)
+    total_portfolio_equity = total_stock_balance + cash_balance
+
+    if not df.empty and total_portfolio_equity > 0:
+        df['% of Portfolio'] = (df['Current Balance'] / total_portfolio_equity) * 100
+    else:
+        df['% of Portfolio'] = 0.0
+
+    return df, cash_balance, voo_balance, total_portfolio_equity
 
 monthly_data, monthly_file = load_latest_results("monthly")
 weekly_data, weekly_file = load_latest_results("weekly")
 daily_data, daily_file = load_latest_results("daily")
-dash_data, sell_data = load_portfolio_files()
+sell_data = load_sell_signals()
 
-if monthly_data is None and weekly_data is None and daily_data is None and sell_data is None:
-    st.warning("No scans found. Run `python scanner.py` and `python sell_scanner.py` in your terminal.")
-    st.stop()
-
+# Sidebar Filters
 st.sidebar.header("🎯 Quantitative Matrix Filters")
 
 min_val = st.sidebar.slider("Min Valuation Rank (Cheapness)", min_value=0, max_value=100, value=50, step=5)
@@ -40,22 +121,17 @@ max_leverage = st.sidebar.slider("Max Net Debt / EBITDA", min_value=0.0, max_val
 
 all_tiers = set()
 all_statuses = set()
-for df in [monthly_data, weekly_data, daily_data]:
-    if df is not None and not df.empty:
-        if 'Floor Tier' in df.columns:
-            all_tiers.update(df['Floor Tier'].dropna().unique())
-        if 'Status' in df.columns:
-            all_statuses.update(df['Status'].dropna().unique())
+for df_temp in [monthly_data, weekly_data, daily_data]:
+    if df_temp is not None and not df_temp.empty:
+        if 'Floor Tier' in df_temp.columns:
+            all_tiers.update(df_temp['Floor Tier'].dropna().unique())
+        if 'Status' in df_temp.columns:
+            all_statuses.update(df_temp['Status'].dropna().unique())
 
 selected_tier = st.sidebar.multiselect("Technical Floor Tier:", options=list(all_tiers), default=list(all_tiers))
 selected_status = st.sidebar.multiselect("Signal Status:", options=list(all_statuses), default=list(all_statuses))
 
-tab1, tab2, tab3, tab4 = st.tabs([
-    "Monthly", 
-    "Weekly", 
-    "Daily",
-    "Portfolio"
-])
+tab1, tab2, tab3, tab4 = st.tabs(["Monthly", "Weekly", "Daily", "Portfolio"])
 
 def render_dashboard(df, filename, tab_title):
     if df is None:
@@ -63,14 +139,11 @@ def render_dashboard(df, filename, tab_title):
         return
         
     st.caption(f"Loaded data from: `{filename}`")
-    
     filtered_df = df.copy()
     
-    # Check if this CSV has the upgraded dual-rank schema or legacy schema
     is_upgraded = 'Valuation_Rank' in filtered_df.columns and 'Quality_Rank' in filtered_df.columns
     
     if is_upgraded:
-        # Non-financials respect leverage slider; financials or 0-debt items pass through
         filtered_df = filtered_df[
             (filtered_df['Valuation_Rank'] >= min_val) & 
             (filtered_df['Quality_Rank'] >= min_qual) &
@@ -79,7 +152,6 @@ def render_dashboard(df, filename, tab_title):
             (filtered_df['Status'].isin(selected_status))
         ]
     else:
-        # Fallback filter for legacy files
         if 'Final_Grade' in filtered_df.columns:
             filtered_df = filtered_df[
                 (filtered_df['Final_Grade'] >= min_val) & 
@@ -144,40 +216,16 @@ with tab3:
     render_dashboard(daily_data, daily_file, "Daily")
 
 with tab4:
-    st.markdown("### 📊 Dashboard")
+    st.markdown("### 📊 Live Portfolio Dashboard")
     
-    cash_balance = 0.0
-    cost_dict = {}
-    
-    try:
-        with open("portfolio.txt", "r") as f:
-            for line in f:
-                if line.strip():
-                    parts = line.split(',')
-                    if len(parts) >= 3:
-                        sym = parts[0].strip()
-                        qty = float(parts[1].strip())
-                        cost = float(parts[2].strip())
-                        if sym == "CASH":
-                            cash_balance = qty
-                        else:
-                            cost_dict[sym] = cost
-    except:
-        pass
+    col_refresh, _ = st.columns([1, 5])
+    if col_refresh.button("🔄 Refresh Live Quotes"):
+        st.cache_data.clear()
+        st.rerun()
 
-    current_balance = cash_balance
-    voo_balance = 0.0
-    
+    dash_data, cash_balance, voo_balance, current_balance = get_live_portfolio_data()
+
     if dash_data is not None and not dash_data.empty:
-        current_balance += dash_data['Current Balance'].sum()
-        
-        voo_row = dash_data[dash_data['Symbol'] == 'VOO']
-        if not voo_row.empty:
-            voo_balance = voo_row.iloc[0]['Current Balance']
-        
-        dash_data['% of Portfolio'] = (dash_data['Current Balance'] / current_balance) * 100
-        dash_data['Cost Basis'] = dash_data['Symbol'].map(cost_dict).fillna(0.0)
-        
         display_df = dash_data[["Symbol", "Current Balance", "% of Portfolio", "Quantity", "Cost Basis", "Price", "$ Change", "% Change", "$ Unrealized"]].copy()
         display_df.columns = ["SYMBOL", "BALANCE", "PORTFOLIO %", "QUANTITY", "COST BASIS", "CURRENT PRICE", "DAY $ CHANGE", "DAY % CHANGE", "GAIN/LOSS"]
         
@@ -217,12 +265,12 @@ with tab4:
 
         st.dataframe(styled_dash, hide_index=True, use_container_width=True)
     else:
-        st.info("No dashboard data found. Run `python sell_scanner.py`.")
+        st.info("No holdings found in portfolio.txt.")
         
     st.write("---")
     st.markdown("### 💰 Waterfall Capital Allocation")
     
-    st.metric("Total Equity (Live from local scan)", f"${current_balance:,.2f}")
+    st.metric("Total Equity (Live Market Pricing)", f"${current_balance:,.2f}")
     
     conn = st.connection("gsheets", type=GSheetsConnection)
     

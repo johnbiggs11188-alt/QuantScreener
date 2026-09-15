@@ -1,0 +1,14 @@
+Ticker,Composite_Grade,Valuation_Rank,Quality_Rank,Floor Tier,Status,Close Price,FCF_Yield,EV_EBITDA,NetDebt_EBITDA,Op_Margin,ROA,Sector
+CRUS,75.0,80.8,69.2,🟢🟢 Deep Floor,Confirmed (Previous),118.79,0.07734903659022653,9.662,0.0,0.18367,0.12163,Technology
+APP,73.1,46.2,100.0,🟢🟢 Deep Floor,Confirmed (Previous),323.96,0.028320547759713318,20.742,0.09,0.77678,0.4646,Communication Services
+AROC,73.1,76.9,69.2,🟢 Oversold Floor,Confirmed (Previous),32.77,0.0451368740306733,9.019,2.76,0.35931998,0.08123,Energy
+UTHR,71.2,53.8,88.5,🟢🟢 Deep Floor,Live (Unfinished),502.7,0.025839875588744808,12.631,0.0,0.42231998,0.11607,Healthcare
+APTV,67.3,100.0,34.6,🟢🟢 Deep Floor,Confirmed (Previous),45.54,0.173751911900674,4.399,1.52,0.12675999,0.067150004,Consumer Cyclical
+VFC,67.3,92.3,42.3,🟢🟢 Deep Floor,Live (Unfinished),13.07,0.15216173421614337,4.779,2.17,-0.05529,0.10762,Consumer Cyclical
+NXPI,65.4,69.2,61.5,🟢 Oversold Floor,Confirmed (Previous),236.62,0.0628727573797549,12.758,1.53,0.30406,0.10457,Technology
+LMAT,48.1,46.2,50.0,🟢🟢 Deep Floor,Live (Unfinished),80.77,0.02667007666280665,20.009,0.0,0.28983,0.07441,Healthcare
+ISRG,48.0,26.9,69.2,🟢 Oversold Floor,Live (Unfinished),377.94,0.01931353815590775,30.719,0.0,0.33603,0.10512,Healthcare
+BTI,38.4,34.6,42.3,🟢 Oversold Floor,Live (Unfinished),57.29,0.02857666288959065,58.301,2.9,0.34908,0.05119,Consumer Defensive
+SAIA,34.6,38.5,30.8,🟢 Oversold Floor,Live (Unfinished),351.03,0.014531478336687022,15.473,0.3,0.13091,0.06303,Industrials
+WMT,21.2,19.2,23.1,🟢🟢 Deep Floor,Confirmed (Previous),107.15,0.00821091366848223,21.227,1.44,0.0345,0.06414,Consumer Defensive
+BWXT,17.3,15.4,19.2,🟢🟢 Deep Floor,Confirmed (Previous),150.12,0.010700889021924637,31.522,2.96,0.10393,0.05534,Industrials

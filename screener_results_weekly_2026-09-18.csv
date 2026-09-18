@@ -1,0 +1,12 @@
+Ticker,Composite_Grade,Valuation_Rank,Quality_Rank,Floor Tier,Status,Close Price,FCF_Yield,EV_EBITDA,NetDebt_EBITDA,Op_Margin,ROA,Sector
+AROC,75.0,81.8,68.2,🟢 Oversold Floor,Confirmed (Previous),32.77,0.044081463042673075,9.169,2.76,0.35931998,0.08123,Energy
+CRUS,75.0,81.8,68.2,🟢🟢 Deep Floor,Confirmed (Previous),118.79,0.07475938298773242,10.047,0.0,0.18367,0.12163,Technology
+APP,72.8,45.5,100.0,🟢🟢 Deep Floor,Confirmed (Previous),323.96,0.029433641352443172,19.961,0.09,0.77678,0.4646,Communication Services
+APTV,68.2,100.0,36.4,🟢🟢 Deep Floor,Confirmed (Previous),45.54,0.1784123965636795,4.324,1.52,0.12675999,0.067150004,Consumer Cyclical
+UTHR,68.2,50.0,86.4,🟢🟢 Deep Floor,Live (Unfinished),497.27,0.02612203980704781,12.476,0.0,0.42231998,0.11607,Healthcare
+NXPI,65.9,68.2,63.6,🟢 Oversold Floor,Confirmed (Previous),235.56,0.06184671498803854,12.943,1.53,0.30406,0.10457,Technology
+LMAT,47.8,45.5,50.0,🟢🟢 Deep Floor,Live (Unfinished),79.47,0.02710635410187151,19.651,0.0,0.28983,0.07441,Healthcare
+ISRG,45.4,18.2,72.7,🟢 Oversold Floor,Live (Unfinished),383.54,0.019031544176324473,31.192,0.0,0.33603,0.10512,Healthcare
+TXT,43.2,72.7,13.6,🟢🟢 Deep Floor,Live (Unfinished),80.91,0.03253575253003867,9.935,1.65,0.08701,0.045479998,Industrials
+BWXT,20.4,18.2,22.7,🟢🟢 Deep Floor,Confirmed (Previous),150.12,0.010860286795930568,31.103,2.96,0.10393,0.05534,Industrials
+WMT,18.2,18.2,18.2,🟢🟢 Deep Floor,Confirmed (Previous),107.15,0.008386988017385511,20.815,1.44,0.0345,0.06414,Consumer Defensive

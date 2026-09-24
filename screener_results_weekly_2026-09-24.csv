@@ -1,0 +1,17 @@
+Ticker,Composite_Grade,Valuation_Rank,Quality_Rank,Floor Tier,Status,Close Price,FCF_Yield,EV_EBITDA,NetDebt_EBITDA,Op_Margin,ROA,Sector
+COCO,73.4,56.2,90.6,🟢 Oversold Floor,Live (Unfinished),57.56,0.031472702610871754,22.424,0.0,0.29209998,0.16974,Consumer Defensive
+APTV,67.2,93.8,40.6,🟢🟢 Deep Floor,Live (Unfinished),43.5,0.17880179166320603,4.424,1.52,0.12675999,0.067150004,Consumer Cyclical
+ANIP,59.4,84.4,34.4,🟢 Oversold Floor,Confirmed (Previous),76.14,0.0778085073613015,8.806,1.19,0.14974,0.05446,Healthcare
+COLL,59.4,93.8,25.0,🟢🟢 Deep Floor,Live (Unfinished),22.21,0.47075558149840274,4.489,2.69,0.05652,0.057550002,Healthcare
+TJX,59.4,62.5,56.2,🟢🟢 Deep Floor,Live (Unfinished),130.92,0.030543044216146793,17.192,0.93,0.10909,0.13543001,Consumer Cyclical
+CNM,57.8,78.1,37.5,🟢🟢 Deep Floor,Live (Unfinished),41.85,0.06178111955557731,11.108,2.61,0.10583,0.07126,Industrials
+LMAT,57.8,46.9,68.8,🟢🟢 Deep Floor,Confirmed (Previous),78.87,0.027012876475867097,19.957,0.0,0.28983,0.07441,Healthcare
+BHF,53.1,53.1,53.1,🟢🟢 Deep Floor,Live (Unfinished),52.98,6.512565228111786,100.0,999.0,0.77778,0.0033399998,Financial Services
+POWL,53.1,40.6,65.6,🟢 Oversold Floor,Live (Unfinished),187.72,0.02784333262704647,27.037,0.0,0.20554,0.116210006,Industrials
+CDNS,50.0,28.1,71.9,🟢 Oversold Floor,Live (Unfinished),318.02,0.01837362151355231,40.002,0.52,0.28575,0.10613,Technology
+MPWR,50.0,9.4,90.6,🟢 Oversold Floor,Live (Unfinished),1333.16,0.006791477452548362,65.199,0.0,0.30989,0.13573,Technology
+BTI,45.3,31.2,59.4,🟢 Oversold Floor,Live (Unfinished),56.01,0.02922772165668726,56.909,2.9,0.34908,0.05119,Consumer Defensive
+MCHP,45.3,53.1,37.5,🟢 Oversold Floor,Live (Unfinished),75.53,0.03425538061840306,30.635,3.4,0.23958,0.03536,Technology
+RBC,43.8,34.4,53.1,🟢🟢 Deep Floor,Live (Unfinished),503.0,0.01778616149950033,26.961,1.23,0.2718,0.06024,Industrials
+CIEN,37.5,18.8,56.2,🟢 Oversold Floor,Live (Unfinished),355.42,0.012559546660665931,49.854,0.64,0.18076,0.07734,Technology
+SUPN,37.5,65.6,9.4,🟢🟢 Deep Floor,Live (Unfinished),43.47,0.03344520996067266,19.833,0.0,-0.02485,0.0038800002,Healthcare

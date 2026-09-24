@@ -1,17 +1,17 @@
 Ticker,Composite_Grade,Valuation_Rank,Quality_Rank,Floor Tier,Status,Close Price,FCF_Yield,EV_EBITDA,NetDebt_EBITDA,Op_Margin,ROA,Sector
-COCO,73.4,56.2,90.6,🟢 Oversold Floor,Live (Unfinished),57.56,0.031472702610871754,22.424,0.0,0.29209998,0.16974,Consumer Defensive
-APTV,67.2,93.8,40.6,🟢🟢 Deep Floor,Live (Unfinished),43.5,0.17880179166320603,4.424,1.52,0.12675999,0.067150004,Consumer Cyclical
-ANIP,59.4,84.4,34.4,🟢 Oversold Floor,Confirmed (Previous),76.14,0.0778085073613015,8.806,1.19,0.14974,0.05446,Healthcare
-COLL,59.4,93.8,25.0,🟢🟢 Deep Floor,Live (Unfinished),22.21,0.47075558149840274,4.489,2.69,0.05652,0.057550002,Healthcare
-TJX,59.4,62.5,56.2,🟢🟢 Deep Floor,Live (Unfinished),130.92,0.030543044216146793,17.192,0.93,0.10909,0.13543001,Consumer Cyclical
-CNM,57.8,78.1,37.5,🟢🟢 Deep Floor,Live (Unfinished),41.85,0.06178111955557731,11.108,2.61,0.10583,0.07126,Industrials
-LMAT,57.8,46.9,68.8,🟢🟢 Deep Floor,Confirmed (Previous),78.87,0.027012876475867097,19.957,0.0,0.28983,0.07441,Healthcare
-BHF,53.1,53.1,53.1,🟢🟢 Deep Floor,Live (Unfinished),52.98,6.512565228111786,100.0,999.0,0.77778,0.0033399998,Financial Services
-POWL,53.1,40.6,65.6,🟢 Oversold Floor,Live (Unfinished),187.72,0.02784333262704647,27.037,0.0,0.20554,0.116210006,Industrials
-CDNS,50.0,28.1,71.9,🟢 Oversold Floor,Live (Unfinished),318.02,0.01837362151355231,40.002,0.52,0.28575,0.10613,Technology
-MPWR,50.0,9.4,90.6,🟢 Oversold Floor,Live (Unfinished),1333.16,0.006791477452548362,65.199,0.0,0.30989,0.13573,Technology
-BTI,45.3,31.2,59.4,🟢 Oversold Floor,Live (Unfinished),56.01,0.02922772165668726,56.909,2.9,0.34908,0.05119,Consumer Defensive
-MCHP,45.3,53.1,37.5,🟢 Oversold Floor,Live (Unfinished),75.53,0.03425538061840306,30.635,3.4,0.23958,0.03536,Technology
-RBC,43.8,34.4,53.1,🟢🟢 Deep Floor,Live (Unfinished),503.0,0.01778616149950033,26.961,1.23,0.2718,0.06024,Industrials
-CIEN,37.5,18.8,56.2,🟢 Oversold Floor,Live (Unfinished),355.42,0.012559546660665931,49.854,0.64,0.18076,0.07734,Technology
-SUPN,37.5,65.6,9.4,🟢🟢 Deep Floor,Live (Unfinished),43.47,0.03344520996067266,19.833,0.0,-0.02485,0.0038800002,Healthcare
+COCO,75.0,59.4,90.6,🟢 Oversold Floor,Live (Unfinished),59.17,0.030549851416567173,22.424,0.0,0.29209998,0.16974,Consumer Defensive
+APTV,64.1,93.8,34.4,🟢🟢 Deep Floor,Live (Unfinished),43.58,0.1785761391026373,4.424,1.52,0.12675999,0.067150004,Consumer Cyclical
+NXT,60.9,56.2,65.6,🟢🟢 Deep Floor,Live (Unfinished),79.97,0.026374667197844395,15.005,0.0,0.20858,0.11685,Technology
+TJX,57.8,62.5,53.1,🟢🟢 Deep Floor,Live (Unfinished),131.63,0.030375976476858482,17.192,0.93,0.10909,0.13543001,Consumer Cyclical
+COLL,56.3,93.8,18.8,🟢🟢 Deep Floor,Live (Unfinished),22.64,0.4617105709995036,4.489,2.69,0.05652,0.057550002,Healthcare
+ANIP,56.2,84.4,28.1,🟢 Oversold Floor,Confirmed (Previous),76.14,0.07773494396328176,8.806,1.19,0.14974,0.05446,Healthcare
+LMAT,56.2,50.0,62.5,🟢🟢 Deep Floor,Confirmed (Previous),78.87,0.026653575699260468,19.957,0.0,0.28983,0.07441,Healthcare
+MYRG,56.2,75.0,37.5,🟢 Oversold Floor,Live (Unfinished),295.18,0.038581214209567095,15.559,0.0,0.06199,0.08479,Industrials
+BHF,53.1,53.1,53.1,🟢🟢 Deep Floor,Live (Unfinished),53.46,6.4656640381974,100.0,999.0,0.77778,0.0033399998,Financial Services
+POWL,51.6,43.8,59.4,🟢 Oversold Floor,Live (Unfinished),191.62,0.027273738902871113,27.037,0.0,0.20554,0.116210006,Industrials
+MPWR,50.0,9.4,90.6,🟢 Oversold Floor,Live (Unfinished),1335.55,0.006769712822739815,65.199,0.0,0.30989,0.13573,Technology
+CDNS,48.4,28.1,68.8,🟢 Oversold Floor,Live (Unfinished),322.0,0.018152225339967867,40.002,0.52,0.28575,0.10613,Technology
+BTI,45.3,34.4,56.2,🟢 Oversold Floor,Live (Unfinished),56.02,0.02923815689331607,56.909,2.9,0.34908,0.05119,Consumer Defensive
+MCHP,43.8,53.1,34.4,🟢 Oversold Floor,Live (Unfinished),74.69,0.03365021211025593,30.635,3.4,0.23958,0.03536,Technology
+RBC,42.2,34.4,50.0,🟢🟢 Deep Floor,Live (Unfinished),503.85,0.017756155663303963,26.961,1.23,0.2718,0.06024,Industrials
+CIEN,32.8,18.8,46.9,🟢 Oversold Floor,Live (Unfinished),358.43,0.012460907548259226,49.854,0.64,0.18076,0.07734,Technology

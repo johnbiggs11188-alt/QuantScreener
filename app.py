@@ -252,13 +252,13 @@ with tab4:
     # Target allocations: 65% VOO, 10% Cash, 25% Stocks
     target_voo = total_capital * 0.65
     target_cash = total_capital * 0.10
-    target_stocks = total_capital * 0.25
     
     voo_deficit = max(0.0, target_voo - voo_balance)
     cash_deficit = max(0.0, target_cash - effective_cash)
     
-    voo_status = "✅ Good" if voo_balance >= target_voo else f"⚠️ Add ${voo_deficit:,.2f}"
-    cash_status = "✅ Good" if effective_cash >= target_cash else f"⚠️ Add ${cash_deficit:,.2f}"
+    # Restored formatting: Targets are always visible inside the text string
+    voo_status = f"✅ Good ${target_voo:,.2f}" if voo_balance >= target_voo else f"⚠️ Add ${voo_deficit:,.2f} (Target${target_voo:,.2f})"
+    cash_status = f"✅ Good ${target_cash:,.2f}" if effective_cash >= target_cash else f"⚠️ Add ${cash_deficit:,.2f} (Target${target_cash:,.2f})"
     
     available_stocks = max(0.0, effective_cash - target_cash - voo_deficit)
 
@@ -267,10 +267,10 @@ with tab4:
     st.markdown("**Current Portfolio Status**")
     a1, a2, a3 = st.columns(3)
     
-    # Headers permanently display the dollar target for that sector
-    a1.metric(f"📈 VOO (Target: ${target_voo:,.2f})", voo_status)
-    a2.metric(f"💵 Cash (Target: ${target_cash:,.2f})", cash_status)
-    a3.metric(f"🎯 Stocks (Target: ${target_stocks:,.2f})", f"${available_stocks:,.2f} Ready")
+    # Restored stable headers
+    a1.metric("📈 VOO (Target: 65%)", voo_status)
+    a2.metric("💵 Cash (Target: 10%)", cash_status)
+    a3.metric("🎯 Available for Stocks (Target: 25%)", f"${available_stocks:,.2f}")
     
     max_per_stock = total_capital * 0.025 
     st.caption(f"💡 **Max Position Rule:** 2.5% maximum buy for any single stock is **${max_per_stock:,.2f}** based on Target Portfolio Value.")

@@ -1,0 +1,39 @@
+Ticker,Composite_Grade,Valuation_Rank,Quality_Rank,Floor Tier,Status,Close Price,FCF_Yield,EV_EBITDA,NetDebt_EBITDA,Op_Margin,ROA,Sector
+EXE,80.9,84.2,77.6,🟢 Strong Green (< -60),Live Strong Dot (Today),88.62,0.07146907371120956,3.509,0.46,0.26323998,0.08486,Energy
+YOU,76.9,67.1,86.8,🟢 Strong Green (< -60),Posted Strong Dot (Yesterday),38.9,0.07993695303948488,11.491,0.0,0.29865,0.11396,Technology
+LRN,76.3,77.6,75.0,🟢 Strong Green (< -60),Live Strong Dot (Today),80.04,0.067599731067047,5.649,0.0,0.15981,0.11914,Consumer Defensive
+EQT,74.4,85.5,63.2,🟢 Strong Green (< -60),Posted Strong Dot (Yesterday),51.06,0.0758472743349124,5.946,0.79,0.23372999,0.06629,Energy
+RDN,72.4,81.6,63.2,🟢 Strong Green (< -60),Posted Strong Dot (Yesterday),34.54,0.06957592765240107,5.614,0.7,0.31627,0.0529,Financial Services
+OC,70.4,85.5,55.3,🟢 Strong Green (< -60),Posted Strong Dot (Yesterday),122.88,0.09111623517640871,7.777,2.82,0.17816,0.05787,Industrials
+SNA,65.8,48.7,82.9,🟢 Strong Green (< -60),Posted Strong Dot (Yesterday),370.25,0.05833023459866509,13.219,0.0,0.25397,0.09849,Industrials
+DORM,65.8,51.3,80.3,🟢 Strong Green (< -60),Live Strong Dot (Today),122.6,0.039576585584736784,9.592,0.94,0.23629,0.0917,Consumer Cyclical
+INGR,65.4,82.9,48.0,🟢 Strong Green (< -60),Posted Strong Dot (Yesterday),96.82,0.07514326011687147,5.993,0.72,0.12595001,0.07334,Consumer Defensive
+CNI,64.4,51.3,77.6,🟢 Strong Green (< -60),Posted Strong Dot (Yesterday),119.49,0.04177729048047086,10.375,2.45,0.40269002,0.07722,Industrials
+AXTA,63.8,75.0,52.6,🟢 Strong Green (< -60),Posted Strong Dot (Yesterday),32.43,0.07813988814625748,9.471,2.46,0.15156001,0.06121,Basic Materials
+DBD,62.5,90.8,34.2,🟢 Strong Green (< -60),Posted Strong Dot (Yesterday),63.04,0.14713105643346772,6.439,1.82,0.082720004,0.05817,Technology
+LOW,61.8,48.7,75.0,🟢 Strong Green (< -60),Posted Strong Dot (Yesterday),191.36,0.043642937256682404,11.361,3.05,0.13365,0.12519,Consumer Cyclical
+WINA,61.2,22.4,100.0,🟢 Strong Green (< -60),Posted Strong Dot (Yesterday),291.26,0.03132964185737817,19.913,0.67,0.62101,0.78069997,Consumer Cyclical
+CCK,60.2,73.7,46.7,🟢 Strong Green (< -60),Posted Strong Dot (Yesterday),109.73,0.07427592508615069,8.264,2.66,0.12595001,0.070989996,Consumer Cyclical
+PEP,59.2,47.4,71.1,🟢 Strong Green (< -60),Live Strong Dot (Today),128.15,0.044740047996229264,11.523,2.25,0.16836001,0.08931,Consumer Defensive
+SIGI,57.9,88.2,27.6,🟢 Strong Green (< -60),Posted Strong Dot (Yesterday),86.33,0.26537341774625595,8.143,0.73,0.12693,0.02832,Financial Services
+R,57.2,89.5,25.0,🟢 Strong Green (< -60),Posted Strong Dot (Yesterday),238.0,0.1047801150928602,6.214,2.96,0.08455,0.03893,Industrials
+ROL,54.6,25.0,84.2,🟢 Strong Green (< -60),Posted Strong Dot (Yesterday),32.49,0.03430256889104764,18.072,1.16,0.18799,0.14061,Consumer Cyclical
+HD,51.3,32.9,69.7,🟢 Strong Green (< -60),Posted Strong Dot (Yesterday),296.72,0.036920900064916634,14.306,2.48,0.12858,0.121379994,Consumer Cyclical
+MAT,50.0,82.9,17.1,🟢 Strong Green (< -60),Posted Strong Dot (Yesterday),13.08,0.11329375313598618,9.146,3.4,0.01323,0.04731,Consumer Cyclical
+CSX,48.7,22.4,75.0,🟢 Strong Green (< -60),Live Strong Dot (Today),46.95,0.022457940547839457,15.376,2.64,0.38424,0.07383,Industrials
+JBSS,48.0,56.6,39.5,🟢 Strong Green (< -60),Posted Strong Dot (Yesterday),67.69,0.03704668383949422,7.854,0.95,0.041079998,0.08498,Consumer Defensive
+BC,43.4,72.4,14.5,🟢 Strong Green (< -60),Posted Strong Dot (Yesterday),66.23,0.08538900522784847,10.425,3.32,0.06804,0.033800002,Consumer Cyclical
+GOLF,42.1,18.4,65.8,🟢 Strong Green (< -60),Posted Strong Dot (Yesterday),82.95,0.00940670420108613,15.602,2.73,0.16048001,0.0825,Consumer Cyclical
+NVST,40.2,59.2,21.1,🟢 Strong Green (< -60),Posted Strong Dot (Yesterday),23.82,0.06929197532961073,10.656,1.14,0.1039,0.03229,Healthcare
+SBUX,38.8,18.4,59.2,🟢 Strong Green (< -60),Posted Strong Dot (Yesterday),94.14,0.028714019629155114,22.262,3.34,0.12919,0.08022001,Consumer Cyclical
+UNH,38.8,51.3,26.3,🟢 Strong Green (< -60),Live Strong Dot (Today),375.01,0.07210856323994162,14.466,1.57,0.071329996,0.04871,Healthcare
+JJSF,38.2,51.3,25.0,🟢 Strong Green (< -60),Posted Strong Dot (Yesterday),77.93,0.039981717111018354,10.083,0.83,0.10827,0.03621,Consumer Defensive
+TSCO,37.5,25.0,50.0,🟢 Strong Green (< -60),Posted Strong Dot (Yesterday),32.29,0.006298262731160252,11.75,3.27,0.120740004,0.07824,Consumer Cyclical
+CURB,34.9,31.6,38.2,🟢 Strong Green (< -60),Live Strong Dot (Today),28.44,0.046516752417800115,27.999,3.31,0.19184,0.00973,Real Estate
+GPC,34.8,50.0,19.7,🟢 Strong Green (< -60),Live Strong Dot (Today),129.26,0.05147332919896688,11.659,2.97,0.06562,0.04481,Consumer Cyclical
+TOST,31.6,13.2,50.0,🟢 Strong Green (< -60),Live Strong Dot (Today),30.11,0.027250138917621673,32.894,0.0,0.07442,0.08953,Technology
+HSIC,30.9,44.7,17.1,🟢 Strong Green (< -60),Posted Strong Dot (Yesterday),85.05,0.04678964896607616,13.661,3.39,0.057550002,0.043920003,Healthcare
+UMBF,27.0,2.6,51.3,🟢 Strong Green (< -60),Posted Strong Dot (Yesterday),133.85,0.0,100.0,999.0,0.51058,0.0130900005,Financial Services
+BROS,23.6,11.8,35.5,🟢 Strong Green (< -60),Live Strong Dot (Today),38.51,0.0002545889117439832,19.956,2.91,0.12876001,0.03788,Consumer Cyclical
+AGYS,23.0,9.2,36.8,🟢 Strong Green (< -60),Live Strong Dot (Today),99.68,0.020434747454366346,55.366,0.0,0.11107001,0.05505,Technology
+AHR,15.8,19.7,11.8,🟢 Strong Green (< -60),Live Strong Dot (Today),52.31,0.03478602663770179,28.744,3.15,0.0683,0.02095,Real Estate

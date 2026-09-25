@@ -1,0 +1,49 @@
+Ticker,Composite_Grade,Valuation_Rank,Quality_Rank,Floor Tier,Status,Close Price,FCF_Yield,EV_EBITDA,NetDebt_EBITDA,Op_Margin,ROA,Sector
+ZTS,81.8,63.5,100.0,🟢🟢 Deep Floor,Confirmed (Previous),77.1,0.06946256579847092,9.005,1.86,0.40721,0.15352,Healthcare
+VRRM,80.7,88.5,72.9,🟢🟢 Deep Floor,Confirmed (Previous),4.43,0.0876240375186102,4.259,2.88,0.27168,0.09162,Technology
+LULU,77.0,88.5,65.6,🟢🟢 Deep Floor,Confirmed (Previous),120.26,0.10206700710311875,5.035,0.32,0.13212,0.14401,Consumer Cyclical
+ACN,75.0,82.3,67.7,🟢🟢 Deep Floor,Confirmed (Previous),189.76,0.11135651936386438,8.375,0.0,0.16964,0.10903,Technology
+ADT,75.0,95.8,54.2,⚪ Standard (< 0),Confirmed (Previous),7.33,0.257724148631238,4.598,2.87,0.24072,0.051799998,Industrials
+CTSH,74.5,80.2,68.8,🟢 Oversold Floor,Confirmed (Previous),64.58,0.08603250131539518,6.639,0.26,0.17479,0.10735,Technology
+VNT,67.7,75.0,60.4,⚪ Standard (< 0),Confirmed (Previous),32.19,0.08318313587363756,8.367,2.38,0.19387,0.0863,Technology
+INTU,67.2,66.7,67.7,🟢🟢 Deep Floor,Confirmed (Previous),359.3,0.08579126697556828,10.991,0.18,0.17638999,0.1047,Technology
+SONY,65.1,99.0,31.2,⚪ Standard (< 0),Confirmed (Previous),24.56,24.938461949235087,0.116,0.0,0.16721001,0.042529996,Technology
+G,64.6,77.1,52.1,🟢 Oversold Floor,Confirmed (Previous),37.78,0.08550069929316467,7.396,1.02,0.15016,0.091759995,Technology
+CMCSA,64.0,92.7,35.4,🟢 Oversold Floor,Confirmed (Previous),26.62,0.1616886479350209,4.738,2.43,0.17233999,0.043080002,Communication Services
+BR,63.0,52.1,74.0,🟢 Oversold Floor,Confirmed (Previous),181.26,0.06440468706658799,11.975,1.72,0.24609,0.09295,Technology
+EPAC,63.0,45.8,80.2,🟢 Oversold Floor,Confirmed (Previous),37.32,0.05542790280379344,12.297,0.44,0.2469,0.10475001,Industrials
+INFY,63.0,41.7,84.4,🟢🟢 Deep Floor,Confirmed (Previous),12.06,0.07443519122338994,18.495,0.0,0.21173,0.15297,Technology
+ADSK,62.5,37.5,87.5,⚪ Standard (< 0),Confirmed (Previous),258.53,0.0714816847620926,19.126,0.0,0.29228002,0.11472999,Technology
+EPAM,62.5,87.5,37.5,🟢🟢 Deep Floor,Confirmed (Previous),117.83,0.11779703410014875,6.481,0.0,0.10936,0.08453,Technology
+CPRT,59.9,37.5,82.3,🟢🟢 Deep Floor,Confirmed (Previous),32.99,0.03409592160519282,11.483,0.0,0.32011002,0.10268,Industrials
+INGR,59.4,78.1,40.6,🟢🟢 Deep Floor,Confirmed (Previous),103.46,0.07514326011687147,5.993,0.72,0.12595001,0.07334,Consumer Defensive
+BEKE,58.4,97.9,18.8,⚪ Standard (< 0),Confirmed (Previous),17.19,0.23668350944274683,-2.383,0.0,0.12332,0.02567,Real Estate
+BAH,57.3,74.0,40.6,🟢 Oversold Floor,Confirmed (Previous),75.65,0.09695153278189896,9.96,2.88,0.09964,0.09193,Industrials
+OTIS,56.8,45.8,67.7,🟢🟢 Deep Floor,Confirmed (Previous),71.13,0.05658307238169513,12.769,3.04,0.15133001,0.14249,Industrials
+RMD,56.8,22.9,90.6,⚪ Standard (< 0),Confirmed (Previous),240.1,0.029344040997951498,14.966,0.0,0.30857,0.14002,Healthcare
+SNY,55.2,64.6,45.8,🟢 Oversold Floor,Confirmed (Previous),44.36,0.06421138550779439,8.542,1.27,0.21033001,0.05093,Healthcare
+JKHY,54.6,28.1,81.2,⚪ Standard (< 0),Confirmed (Previous),167.3,0.034001258952590194,14.846,0.09,0.22503,0.12989001,Technology
+META,54.6,13.5,95.8,⚪ Standard (< 0),Live (Unfinished),777.59,0.010880638950360231,18.266,0.2,0.34827,0.14591,Communication Services
+LDOS,54.2,66.7,41.7,⚪ Standard (< 0),Live (Unfinished),123.35,0.07407394911999103,8.968,2.45,0.11715999,0.089099996,Technology
+DOCS,53.6,29.2,78.1,⚪ Standard (< 0),Confirmed (Previous),26.71,0.05164333548802711,19.018,0.0,0.21539,0.10949001,Healthcare
+OLED,52.6,36.5,68.8,🟢🟢 Deep Floor,Confirmed (Previous),82.64,0.03312902814775179,11.362,0.0,0.35257998,0.06767,Technology
+UHS,50.0,62.5,37.5,⚪ Standard (< 0),Confirmed (Previous),170.13,0.04777189611271331,5.814,1.9,0.1114,0.08321,Healthcare
+MZTI,49.5,52.1,46.9,🟢🟢 Deep Floor,Confirmed (Previous),111.58,0.04810677073165031,9.793,0.75,0.10899,0.10298,Consumer Defensive
+SAP,46.8,15.6,78.1,⚪ Standard (< 0),Confirmed (Previous),220.89,0.037664850168146746,288.961,0.0,0.2762,0.0954,Technology
+BSX,44.8,33.3,56.3,🟢🟢 Deep Floor,Confirmed (Previous),48.3,0.0378581516730471,13.497,2.12,0.22895999,0.06191,Healthcare
+STE,44.8,36.5,53.1,⚪ Standard (< 0),Confirmed (Previous),231.93,0.03924631085098691,13.369,0.95,0.19153,0.06797,Healthcare
+GEHC,42.7,53.1,32.3,⚪ Standard (< 0),Confirmed (Previous),71.23,0.05246735200565187,10.768,2.36,0.14976,0.05131,Healthcare
+OPCH,41.7,61.5,21.9,⚪ Standard (< 0),Confirmed (Previous),23.45,0.07452339276463861,11.127,2.64,0.05903,0.061690003,Healthcare
+PEGA,39.6,46.9,32.3,⚪ Standard (< 0),Live (Unfinished),34.23,0.09016342732192868,25.454,0.0,0.046040002,0.0907,Technology
+DIS,38.6,34.4,42.7,⚪ Standard (< 0),Confirmed (Previous),107.55,0.026665934669870193,10.969,1.95,0.19301,0.048070002,Communication Services
+DLB,38.0,45.8,30.2,🟢🟢 Deep Floor,Confirmed (Previous),61.56,0.061548987452638405,13.472,0.0,0.12548,0.05152,Industrials
+KAI,34.9,22.9,46.9,⚪ Standard (< 0),Confirmed (Previous),299.14,0.0326272092304022,15.083,1.56,0.16839,0.06787,Industrials
+TRMB,32.3,32.3,32.3,⚪ Standard (< 0),Live (Unfinished),57.69,0.051008593377717355,16.699,1.41,0.15134,0.04804,Technology
+TSCO,31.8,25.0,38.5,🟢🟢 Deep Floor,Confirmed (Previous),34.9,0.006298262731160252,11.75,3.27,0.120740004,0.07824,Consumer Cyclical
+UFPI,27.1,41.7,12.5,🟢 Oversold Floor,Confirmed (Previous),84.16,0.027118471959273447,8.638,0.0,0.05508,0.04756,Basic Materials
+CHWY,26.6,35.4,17.7,🟢 Oversold Floor,Confirmed (Previous),23.8,0.06098821851188961,18.299,1.27,0.024619998,0.06079,Consumer Cyclical
+OLLI,24.0,19.8,28.1,🟢 Oversold Floor,Live (Unfinished),84.44,0.02385258797657102,14.889,1.44,0.10815,0.067379996,Consumer Defensive
+GWRE,19.8,10.4,29.2,⚪ Standard (< 0),Confirmed (Previous),204.75,0.027706542565386533,75.378,0.0,0.15159,0.03536,Technology
+CSGP,13.0,17.7,8.3,🟢🟢 Deep Floor,Confirmed (Previous),32.07,0.03656490522121401,28.398,0.0,0.082159996,0.00466,Real Estate
+FRPT,12.5,14.6,10.4,⚪ Standard (< 0),Confirmed (Previous),69.86,0.006878048503917241,15.203,0.74,0.07113,0.03486,Consumer Defensive
+ARLO,11.5,19.8,3.1,⚪ Standard (< 0),Confirmed (Previous),13.15,0.044604326479169974,87.598,0.0,-0.035550002,0.0136899995,Industrials

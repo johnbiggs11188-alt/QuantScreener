@@ -226,7 +226,7 @@ with tab4:
     dash_data, cash_balance, voo_balance, current_balance = get_live_portfolio_data()
 
     if dash_data is not None and not dash_data.empty:
-        display_df = dash_data[["Symbol", "Current Balance", "% of Portfolio", "Quantity", "Cost Basis", "Price", "$ Change", "\% Change", "$ Unrealized"]].copy()
+        display_df = dash_data[["Symbol", "Current Balance", "% of Portfolio", "Quantity", "Cost Basis", "Price", "$ Change", "% Change", "$ Unrealized"]].copy()
         display_df.columns = ["SYMBOL", "BALANCE", "PORTFOLIO %", "QUANTITY", "COST BASIS", "CURRENT PRICE", "DAY $ CHANGE", "DAY % CHANGE", "GAIN/LOSS"]
         
         def format_dol(val):
@@ -307,8 +307,8 @@ with tab4:
     voo_deficit = max(0.0, target_voo - voo_balance)
     cash_deficit = max(0.0, target_cash - effective_cash)
     
-    voo_status = f"✅ Good ${target_voo:,.2f}" if voo_balance >= target_voo else f"⚠️ Add ${voo_deficit:,.2f} (Target${target_voo:,.2f})"
-    cash_status = f"✅ Good ${target_cash:,.2f}" if effective_cash >= target_cash else f"⚠️ Add ${cash_deficit:,.2f} (Target${target_cash:,.2f})"
+    voo_status = "✅ Good" if voo_balance >= target_voo else f"⚠️ Short ${voo_deficit:,.2f}"
+    cash_status = "✅ Good" if effective_cash >= target_cash else f"⚠️ Short ${cash_deficit:,.2f}"
     
     available_stocks = max(0.0, effective_cash - target_cash - voo_deficit)
 

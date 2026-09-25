@@ -1,0 +1,17 @@
+Ticker,Composite_Grade,Valuation_Rank,Quality_Rank,Floor Tier,Status,Close Price,FCF_Yield,EV_EBITDA,NetDebt_EBITDA,Op_Margin,ROA,Sector
+COCO,75.0,59.4,90.6,🟢 Oversold Floor,Live (Unfinished),59.17,0.030549851416567173,22.924,0.0,0.29209998,0.16974,Consumer Defensive
+APTV,64.1,93.8,34.4,🟢🟢 Deep Floor,Live (Unfinished),43.58,0.1785761391026373,4.322,1.52,0.12675999,0.067150004,Consumer Cyclical
+NXT,60.9,56.2,65.6,🟢🟢 Deep Floor,Live (Unfinished),79.97,0.026374667197844395,14.632,0.0,0.20858,0.11685,Technology
+TJX,57.8,62.5,53.1,🟢🟢 Deep Floor,Live (Unfinished),131.63,0.030375976476858482,17.197,0.93,0.10909,0.13543001,Consumer Cyclical
+COLL,56.3,93.8,18.8,🟢🟢 Deep Floor,Live (Unfinished),22.64,0.4617105709995036,4.505,2.69,0.05652,0.057550002,Healthcare
+ANIP,56.2,84.4,28.1,🟢 Oversold Floor,Confirmed (Previous),76.14,0.07773494396328176,8.766,1.19,0.14974,0.05446,Healthcare
+LMAT,56.2,50.0,62.5,🟢🟢 Deep Floor,Confirmed (Previous),78.87,0.026653575699260468,20.023,0.0,0.28983,0.07441,Healthcare
+MYRG,56.2,75.0,37.5,🟢 Oversold Floor,Live (Unfinished),295.18,0.038581214209567095,15.559,0.0,0.06199,0.08479,Industrials
+POWL,53.2,46.9,59.4,🟢 Oversold Floor,Live (Unfinished),191.62,0.027273738902871113,26.883,0.0,0.20554,0.116210006,Industrials
+BHF,53.1,53.1,53.1,🟢🟢 Deep Floor,Live (Unfinished),53.46,6.4656640381974,100.0,999.0,0.77778,0.0033399998,Financial Services
+MPWR,50.0,9.4,90.6,🟢 Oversold Floor,Live (Unfinished),1335.55,0.006769712822739815,64.22,0.0,0.30989,0.13573,Technology
+CDNS,48.4,28.1,68.8,🟢 Oversold Floor,Live (Unfinished),322.0,0.018152225339967867,41.651,0.52,0.28575,0.10613,Technology
+BTI,45.3,34.4,56.2,🟢 Oversold Floor,Live (Unfinished),56.02,0.02923815689331607,57.073,2.9,0.34908,0.05119,Consumer Defensive
+MCHP,43.8,53.1,34.4,🟢 Oversold Floor,Live (Unfinished),74.69,0.03365021211025593,30.332,3.4,0.23958,0.03536,Technology
+RBC,40.6,31.2,50.0,🟢🟢 Deep Floor,Live (Unfinished),503.85,0.017756155663303963,27.145,1.23,0.2718,0.06024,Industrials
+CIEN,32.8,18.8,46.9,🟢 Oversold Floor,Live (Unfinished),358.43,0.012460907548259226,50.202,0.64,0.18076,0.07734,Technology

@@ -1,0 +1,19 @@
+Ticker,Composite_Grade,Valuation_Rank,Quality_Rank,Floor Tier,Status,Close Price,FCF_Yield,EV_EBITDA,NetDebt_EBITDA,Op_Margin,ROA,Sector
+COCO,72.2,50.0,94.4,🟢 Oversold Floor,Live (Unfinished),58.59,0.030852272478431583,22.681,0.0,0.29209998,0.16974,Consumer Defensive
+APTV,68.1,94.4,41.7,🟢🟢 Deep Floor,Live (Unfinished),44.79,0.173751911900674,4.399,1.52,0.12675999,0.067150004,Consumer Cyclical
+NXT,62.5,47.2,77.8,🟢🟢 Deep Floor,Live (Unfinished),80.85,0.026087595898546215,14.81,0.0,0.20858,0.11685,Technology
+ON,61.1,69.4,52.8,🟢 Oversold Floor,Live (Unfinished),77.2,0.05511988290405627,14.795,0.4,0.19532,0.0675,Technology
+TJX,58.4,52.8,63.9,🟢🟢 Deep Floor,Live (Unfinished),130.06,0.030742658284631352,17.003,0.93,0.10909,0.13543001,Consumer Cyclical
+CNM,58.4,75.0,41.7,🟢🟢 Deep Floor,Live (Unfinished),42.64,0.06065098171077657,11.084,2.61,0.10583,0.07126,Industrials
+LMAT,57.0,41.7,72.2,🟢🟢 Deep Floor,Confirmed (Previous),78.87,0.026424705886230124,20.216,0.0,0.28983,0.07441,Healthcare
+ANIP,57.0,80.6,33.3,🟢 Oversold Floor,Confirmed (Previous),76.14,0.07777696147551137,8.762,1.19,0.14974,0.05446,Healthcare
+COLL,56.9,94.4,19.4,🟢🟢 Deep Floor,Live (Unfinished),22.53,0.46396478043671197,4.496,2.69,0.05652,0.057550002,Healthcare
+POWL,55.6,38.9,72.2,🟢 Oversold Floor,Live (Unfinished),189.53,0.02757449225159499,26.56,0.0,0.20554,0.116210006,Industrials
+COLM,54.2,86.1,22.2,🟢 Oversold Floor,Live (Unfinished),57.6,0.08651777736414253,8.135,0.0,0.05027,0.06285,Consumer Cyclical
+MYRG,52.8,61.1,44.4,🟢 Oversold Floor,Live (Unfinished),292.58,0.03892406197050121,15.419,0.0,0.06199,0.08479,Industrials
+BHF,52.8,52.8,52.8,🟢🟢 Deep Floor,Live (Unfinished),53.24,6.492381658189951,100.0,999.0,0.77778,0.0033399998,Financial Services
+CDNS,50.0,22.2,77.8,🟢 Oversold Floor,Live (Unfinished),326.13,0.01792235084821035,42.179,0.52,0.28575,0.10613,Technology
+BTI,41.7,27.8,55.6,🟢 Oversold Floor,Live (Unfinished),55.63,0.029443134739007563,56.696,2.9,0.34908,0.05119,Consumer Defensive
+RBC,37.5,22.2,52.8,🟢🟢 Deep Floor,Live (Unfinished),506.1,0.017677215767078234,27.261,1.23,0.2718,0.06024,Industrials
+CIEN,34.7,11.1,58.3,🟢 Oversold Floor,Live (Unfinished),356.91,0.012513975508836893,49.992,0.64,0.18076,0.07734,Technology
+POWI,19.4,22.2,16.7,🟢 Oversold Floor,Live (Unfinished),52.22,0.0252607913905774,44.714,0.0,0.074829996,0.026199998,Technology

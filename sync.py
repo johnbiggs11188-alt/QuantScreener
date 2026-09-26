@@ -43,7 +43,7 @@ def main():
         cost = portfolio.get('VOO', {}).get('cost', 0.0)
         portfolio['VOO'] = {'qty': float(new_voo), 'cost': cost}
         
-    # 3. Update Individual Stocks
+    # 3. Update Individual Stocks (Automated Cost Basis)
     while True:
         ans = input("\nDid you buy or sell any other stocks today? (y/n): ").strip().lower()
         if ans != 'y':
@@ -51,6 +51,7 @@ def main():
         
         ticker = input("Enter Ticker (e.g., AAPL): ").strip().upper()
         curr_qty = portfolio.get(ticker, {}).get('qty', 0.0)
+        curr_cost = portfolio.get(ticker, {}).get('cost', 0.0)
         
         new_qty_str = input(f"Current {ticker} shares: {curr_qty}\nEnter NEW total shares (Type 0 if you sold everything): ").strip()
         if not new_qty_str:
@@ -63,9 +64,28 @@ def main():
                 del portfolio[ticker]
                 print(f"🗑️ Removed {ticker} from portfolio.")
         else:
-            new_cost = float(input(f"Enter NEW average cost per share for {ticker}: ").strip().replace('$', ''))
+            if new_qty < curr_qty:
+                # Partial Sell: Cost basis remains exactly the same
+                new_cost = curr_cost
+                print(f"📉 Partial sell recorded. Average cost remains ${new_cost:,.2f}.")
+            
+            elif new_qty > curr_qty:
+                # Buy: Calculate the new blended average
+                added_shares = new_qty - curr_qty
+                if curr_qty == 0:
+                    new_cost = float(input(f"Enter purchase price per share for {ticker}: $").strip().replace('$', ''))
+                else:
+                    buy_price = float(input(f"Enter the execution price for the {added_shares} NEW shares: $").strip().replace('$', ''))
+                    old_value = curr_qty * curr_cost
+                    new_value = added_shares * buy_price
+                    new_cost = (old_value + new_value) / new_qty
+                
+                print(f"📈 Buy recorded. New blended average cost is ${new_cost:,.2f}.")
+            
+            else:
+                new_cost = curr_cost
+                
             portfolio[ticker] = {'qty': new_qty, 'cost': new_cost}
-            print(f"✅ Updated {ticker}.")
 
     # 4. Save and Route Execution
     save_portfolio(portfolio)
@@ -87,7 +107,7 @@ def main():
         subprocess.run(["python", "sell_scanner.py"], check=True)
         
         print("📤 Pushing portfolio changes to GitHub...")
-        subprocess.run(["git", "add", "portfolio.txt"], check=True)
+        subprocess.run(["git", "add", "portfolio.txt", "portfolio_dashboard_*.csv", "sell_signals_*.csv"], check=True)
         subprocess.run(["git", "commit", "-m", "Quick portfolio balance update"], check=True)
         subprocess.run(["git", "push"], check=True)
         print("✅ Dashboard updated in cloud successfully!")

@@ -1,0 +1,51 @@
+Ticker,Composite_Grade,Valuation_Rank,Quality_Rank,Floor Tier,Status,Close Price,FCF_Yield,EV_EBITDA,NetDebt_EBITDA,Op_Margin,ROA,Sector
+YOU,81.5,79.0,84.0,🟢 Oversold Floor,Live (Unfinished),41.5,0.09797685299019124,12.597,0.0,0.29865,0.11396,Technology
+CRI,80.5,99.0,62.0,🟢🟢 Deep Floor,Confirmed (Previous),31.59,0.19871420205527313,5.167,1.55,0.23683001,0.0694,Consumer Cyclical
+DECK,77.5,85.0,70.0,🟢🟢 Deep Floor,Confirmed (Previous),79.12,0.07836083163934493,7.543,0.0,0.15233,0.20319,Consumer Cyclical
+MWA,76.5,77.0,76.0,🟢🟢 Deep Floor,Live (Unfinished),21.96,0.038125053434139834,9.388,0.0,0.23945,0.10621,Industrials
+BBWI,76.5,98.0,55.0,🟢🟢 Deep Floor,Live (Unfinished),17.93,0.2114852465639679,5.75,3.0,0.095769994,0.13415,Consumer Cyclical
+TPR,76.0,72.0,80.0,🟢 Oversold Floor,Live (Unfinished),116.75,0.06042669660845827,12.89,1.39,0.19823,0.17543,Consumer Cyclical
+PNR,76.0,81.0,71.0,🟢🟢 Deep Floor,Live (Unfinished),52.94,0.06607855740895713,9.784,1.62,0.2344,0.08663,Industrials
+WMS,73.0,67.0,79.0,🟢🟢 Deep Floor,Live (Unfinished),130.07,0.03336687034661053,12.073,1.69,0.26325,0.10972,Industrials
+WINA,68.5,37.0,100.0,🟢🟢 Deep Floor,Confirmed (Previous),297.69,0.03100877334027567,20.112,0.67,0.62101,0.78069997,Consumer Cyclical
+CCL,68.5,80.0,57.0,🟢 Oversold Floor,Confirmed (Previous),25.76,0.050577453990718266,8.187,3.28,0.26426,0.05395,Consumer Cyclical
+UTHR,66.0,44.0,88.0,🟢 Oversold Floor,Confirmed (Previous),541.7,0.023983062433417062,13.747,0.0,0.42231998,0.11607,Healthcare
+OLED,65.0,61.0,69.0,🟢 Oversold Floor,Live (Unfinished),79.66,0.030542253579469263,12.472,0.0,0.35257998,0.06767,Technology
+LII,65.0,46.0,84.0,🟢🟢 Deep Floor,Confirmed (Previous),356.3,0.021979128731872133,12.478,1.68,0.22856002,0.15994,Industrials
+AMSF,63.5,89.0,38.0,🟢🟢 Deep Floor,Live (Unfinished),23.6,0.08286642844294397,5.877,0.0,0.19858,0.03209,Financial Services
+SMPL,62.5,95.0,30.0,🟢🟢 Deep Floor,Live (Unfinished),9.96,0.12166135388522663,5.544,1.49,0.12784,0.05382,Consumer Defensive
+ROL,62.0,50.0,74.0,🟢🟢 Deep Floor,Live (Unfinished),30.35,0.034359079506337466,18.044,1.16,0.18799,0.14061,Consumer Cyclical
+ATMU,59.5,54.0,65.0,🟢🟢 Deep Floor,Live (Unfinished),45.96,0.027695702291775648,13.285,2.33,0.16973,0.11843,Consumer Cyclical
+ODFL,58.0,26.0,90.0,🟢🟢 Deep Floor,Live (Unfinished),178.02,0.026221233072787016,20.438,0.0,0.28835,0.15775,Industrials
+DBD,57.5,93.0,22.0,🟢 Oversold Floor,Live (Unfinished),65.48,0.14036770372021978,6.66,1.82,0.082720004,0.05817,Technology
+IDXX,57.0,18.0,96.0,🟢🟢 Deep Floor,Confirmed (Previous),518.39,0.022395713123558366,25.593,0.55,0.3498,0.27085,Healthcare
+DOV,56.5,60.0,53.0,🟢🟢 Deep Floor,Confirmed (Previous),189.69,0.03507687545865634,14.325,0.79,0.18691999,0.07061,Industrials
+DY,54.5,73.0,36.0,🟢🟢 Deep Floor,Live (Unfinished),290.43,0.037280216146373384,12.292,2.89,0.09571,0.071,Industrials
+ULS,54.5,39.0,70.0,🟢🟢 Deep Floor,Confirmed (Previous),65.99,0.030462672417943492,19.238,0.06,0.18382,0.12332,Industrials
+DD,53.0,84.0,22.0,🟢 Oversold Floor,Live (Unfinished),133.28,0.1019666717074343,12.35,0.91,0.14239,0.020669999,Basic Materials
+GVA,51.5,86.0,17.0,🟢 Oversold Floor,Confirmed (Previous),119.92,0.17852389238211114,12.442,1.41,0.08996,0.047280002,Industrials
+AGX,49.5,45.0,54.0,🟢🟢 Deep Floor,Live (Unfinished),419.64,0.07946044609135237,26.318,0.0,0.14794,0.0999,Industrials
+LIN,49.0,28.0,70.0,🟢 Oversold Floor,Confirmed (Previous),479.48,0.018422035352760113,18.125,1.67,0.28119,0.07164,Basic Materials
+RBA,48.5,64.0,33.0,🟢 Oversold Floor,Live (Unfinished),81.05,0.04021112564026176,14.863,3.15,0.17721,0.04127,Industrials
+FTV,48.0,60.0,36.0,🟢 Oversold Floor,Confirmed (Previous),57.47,0.05371339417870174,16.78,2.61,0.19137,0.03295,Technology
+VRT,46.5,21.0,72.0,🟢 Oversold Floor,Live (Unfinished),253.14,0.027669311330283466,36.465,0.08,0.20362,0.10889,Industrials
+VMC,46.5,39.0,54.0,🟢🟢 Deep Floor,Live (Unfinished),248.85,0.02616165218245132,15.817,2.03,0.21611,0.06044,Basic Materials
+LHX,44.0,64.0,24.0,🟢🟢 Deep Floor,Live (Unfinished),237.9,0.036320166508545436,13.451,2.29,0.12566,0.04384,Industrials
+CW,43.5,25.0,62.0,🟢🟢 Deep Floor,Live (Unfinished),553.35,0.027059843328206403,25.038,0.8,0.19395,0.08494,Industrials
+CMI,42.5,48.0,37.0,🟢🟢 Deep Floor,Live (Unfinished),535.31,0.03025212241915598,15.76,0.87,0.11896,0.069970004,Industrials
+ECG,42.0,35.0,49.0,🟢 Oversold Floor,Confirmed (Previous),123.35,0.02721348081786234,19.105,0.56,0.09076,0.116809994,Industrials
+SPXC,41.5,38.0,45.0,🟢🟢 Deep Floor,Live (Unfinished),175.82,0.026575340014649344,17.736,0.86,0.17673,0.06755,Industrials
+GOLF,40.0,28.0,52.0,🟢 Oversold Floor,Live (Unfinished),82.96,0.009338671549157273,15.696,2.73,0.16048001,0.0825,Consumer Cyclical
+MLM,37.0,30.0,44.0,🟢🟢 Deep Floor,Live (Unfinished),489.01,0.017085770980017706,16.749,2.93,0.20185,0.045679998,Basic Materials
+ESE,34.5,36.0,33.0,🟢 Oversold Floor,Confirmed (Previous),274.95,0.03366538953922101,22.75,0.25,0.148,0.051090002,Technology
+SAIA,34.0,32.0,36.0,🟢 Oversold Floor,Confirmed (Previous),351.12,0.014930440122492887,15.068,0.3,0.13091,0.06303,Industrials
+OMCL,33.5,61.0,6.0,🟢 Oversold Floor,Confirmed (Previous),33.6,0.08320417374985693,18.56,0.0,0.05909,0.0152199995,Healthcare
+WWD,33.5,9.0,58.0,🟢 Oversold Floor,Confirmed (Previous),331.62,0.009534832984651898,25.575,1.13,0.17764,0.08618,Industrials
+APG,32.5,46.0,19.0,🟢 Oversold Floor,Confirmed (Previous),40.48,0.036253378671122986,19.336,2.77,0.090509996,0.05011,Industrials
+XPO,32.0,30.0,34.0,🟢🟢 Deep Floor,Confirmed (Previous),186.09,0.02205109372155118,18.27,2.71,0.12314,0.06445,Industrials
+OSW,30.0,22.0,38.0,🟢 Oversold Floor,Confirmed (Previous),23.62,0.020685051073457004,19.574,0.41,0.09382,0.08231,Consumer Cyclical
+COST,22.5,10.0,35.0,🟢🟢 Deep Floor,Confirmed (Previous),920.65,0.017233060091621278,27.998,0.0,0.03971,0.087910004,Consumer Defensive
+LSTR,22.5,15.0,30.0,🟢 Oversold Floor,Live (Unfinished),169.05,0.016853973007592667,22.574,0.0,0.04615,0.07333,Industrials
+SUPN,22.0,42.0,2.0,🟢🟢 Deep Floor,Confirmed (Previous),42.38,0.03392935519675094,19.539,0.0,-0.02485,0.0038800002,Healthcare
+CALX,17.5,24.0,11.0,🟢🟢 Deep Floor,Live (Unfinished),35.29,0.02766748370389982,25.802,0.0,0.074489996,0.04081,Technology
+BWXT,16.5,5.0,28.0,🟢🟢 Deep Floor,Live (Unfinished),145.7,0.010908737372327186,30.978,2.96,0.10393,0.05534,Industrials

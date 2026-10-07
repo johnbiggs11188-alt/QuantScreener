@@ -1,14 +1,15 @@
 Ticker,Composite_Grade,Valuation_Rank,Quality_Rank,Floor Tier,Status,Close Price,FCF_Yield,EV_EBITDA,NetDebt_EBITDA,Op_Margin,ROA,Sector
-LOPE,75.0,61.5,88.5,⚪ Standard (< 0),Live (Unfinished),155.55,0.05074842554700963,10.682,0.0,0.22023001,0.20431,Consumer Defensive
-ASO,73.0,84.6,61.5,⚪ Standard (< 0),Live (Unfinished),52.31,0.05265842066233212,6.998,2.39,0.14956,0.06678,Consumer Cyclical
-T,67.3,84.6,50.0,⚪ Standard (< 0),Confirmed (Previous),24.4,0.060584056095434546,7.423,3.3,0.24786,0.04163,Communication Services
-META,61.6,26.9,96.2,⚪ Standard (< 0),Confirmed (Previous),725.18,0.01145067686768583,17.367,0.2,0.34827,0.14591,Communication Services
-AEO,55.8,80.8,30.8,⚪ Standard (< 0),Live (Unfinished),17.89,0.0703041054199673,8.366,3.11,0.020580001,0.05308,Consumer Cyclical
-ISRG,53.8,19.2,88.5,🟢 Oversold Floor,Live (Unfinished),404.76,0.018289030409772963,32.986,0.0,0.33603,0.10512,Healthcare
-PEGA,53.8,57.7,50.0,⚪ Standard (< 0),Confirmed (Previous),33.25,0.0891992539812822,25.744,0.0,0.046040002,0.0907,Technology
-MAT,50.0,84.6,15.4,🟢 Oversold Floor,Live (Unfinished),15.93,0.09345134302651628,10.366,3.4,0.01323,0.04731,Consumer Cyclical
-TRMB,48.0,42.3,53.8,⚪ Standard (< 0),Confirmed (Previous),57.11,0.04828032359190473,17.563,1.41,0.15134,0.04804,Technology
-GAP,46.2,61.5,30.8,⚪ Standard (< 0),Confirmed (Previous),22.84,0.029482272326440247,7.896,2.2,0.0671,0.0478,Consumer Cyclical
-OLLI,46.2,38.5,53.8,🟢 Oversold Floor,Confirmed (Previous),85.65,0.02295284993059964,15.416,1.44,0.10815,0.067379996,Consumer Defensive
-VST,40.4,30.8,50.0,⚪ Standard (< 0),Live (Unfinished),160.5,0.0006891661329437417,11.5,3.02,0.13766,0.05886,Utilities
-SNPS,28.8,26.9,30.8,⚪ Standard (< 0),Live (Unfinished),505.17,0.03538451453203148,50.129,3.49,0.14521,0.01353,Technology
+LOPE,76.8,64.3,89.3,⚪ Standard (< 0),Live (Unfinished),155.68,0.050706051947286696,10.682,0.0,0.22023001,0.20431,Consumer Defensive
+ASO,71.4,85.7,57.1,⚪ Standard (< 0),Live (Unfinished),52.62,0.05234819510783814,6.998,2.39,0.14956,0.06678,Consumer Cyclical
+T,67.8,85.7,50.0,⚪ Standard (< 0),Confirmed (Previous),24.4,0.06048477065527177,7.423,3.3,0.24786,0.04163,Communication Services
+META,60.7,25.0,96.4,⚪ Standard (< 0),Confirmed (Previous),725.18,0.011729598302843288,17.367,0.2,0.34827,0.14591,Communication Services
+WMG,58.9,46.4,71.4,⚪ Standard (< 0),Live (Unfinished),28.16,0.025949082959682093,11.349,2.57,0.16738,0.07651,Communication Services
+AEO,55.4,82.1,28.6,⚪ Standard (< 0),Live (Unfinished),17.66,0.07123989403867152,8.366,3.11,0.020580001,0.05308,Consumer Cyclical
+ISRG,53.6,17.9,89.3,🟢 Oversold Floor,Live (Unfinished),414.52,0.017858409264426937,32.986,0.0,0.33603,0.10512,Healthcare
+PEGA,53.6,57.1,50.0,⚪ Standard (< 0),Confirmed (Previous),33.25,0.0898484410831574,25.744,0.0,0.046040002,0.0907,Technology
+MAT,50.0,85.7,14.3,🟢 Oversold Floor,Live (Unfinished),16.37,0.09093952157448151,10.366,3.4,0.01323,0.04731,Consumer Cyclical
+GAP,46.4,64.3,28.6,⚪ Standard (< 0),Confirmed (Previous),22.84,0.02970704294712894,7.896,2.2,0.0671,0.0478,Consumer Cyclical
+TRMB,46.4,42.9,50.0,⚪ Standard (< 0),Confirmed (Previous),57.11,0.04899576603563005,17.563,1.41,0.15134,0.04804,Technology
+OLLI,42.8,35.7,50.0,🟢 Oversold Floor,Confirmed (Previous),85.65,0.02338456517072741,15.416,1.44,0.10815,0.067379996,Consumer Defensive
+VST,37.5,28.6,46.4,⚪ Standard (< 0),Live (Unfinished),166.73,0.000663402934706082,11.5,3.02,0.13766,0.05886,Utilities
+SNPS,28.6,28.6,28.6,⚪ Standard (< 0),Live (Unfinished),502.67,0.03556049777311602,50.129,3.49,0.14521,0.01353,Technology

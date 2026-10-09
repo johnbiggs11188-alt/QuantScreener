@@ -1,0 +1,15 @@
+Ticker,Composite_Grade,Valuation_Rank,Quality_Rank,Floor Tier,Status,Close Price,FCF_Yield,EV_EBITDA,NetDebt_EBITDA,Op_Margin,ROA,Sector
+LOPE,76.8,64.3,89.3,⚪ Standard (< 0),Live (Unfinished),160.59,0.049226224730822034,11.023,0.0,0.22023001,0.20431,Consumer Defensive
+ASO,71.4,85.7,57.1,⚪ Standard (< 0),Live (Unfinished),53.22,0.05179695354608052,7.037,2.39,0.14956,0.06678,Consumer Cyclical
+T,67.8,85.7,50.0,⚪ Standard (< 0),Confirmed (Previous),24.4,0.06683533309666345,7.49,3.3,0.24786,0.04163,Communication Services
+META,60.7,25.0,96.4,⚪ Standard (< 0),Confirmed (Previous),725.18,0.01167408545686691,16.949,0.2,0.34827,0.14591,Communication Services
+WMG,57.2,42.9,71.4,⚪ Standard (< 0),Live (Unfinished),28.9,0.02528901680259587,11.756,2.57,0.16738,0.07651,Communication Services
+AEO,55.4,82.1,28.6,⚪ Standard (< 0),Live (Unfinished),18.35,0.06854170975000508,8.389,3.11,0.020580001,0.05308,Consumer Cyclical
+PEGA,55.4,60.7,50.0,⚪ Standard (< 0),Confirmed (Previous),33.25,0.08744404926276676,26.442,0.0,0.046040002,0.0907,Technology
+ISRG,53.6,17.9,89.3,🟢 Oversold Floor,Live (Unfinished),425.14,0.017414763332724906,33.885,0.0,0.33603,0.10512,Healthcare
+MAT,48.2,82.1,14.3,⚪ Standard (< 0),Live (Unfinished),17.11,0.08693021624163709,10.65,3.4,0.01323,0.04731,Consumer Cyclical
+GAP,46.4,64.3,28.6,⚪ Standard (< 0),Confirmed (Previous),22.67,0.030245074219670213,7.793,2.2,0.0671,0.0478,Consumer Cyclical
+TRMB,46.4,42.9,50.0,⚪ Standard (< 0),Confirmed (Previous),57.11,0.049097950041324494,17.272,1.41,0.15134,0.04804,Technology
+OLLI,42.8,35.7,50.0,🟢 Oversold Floor,Confirmed (Previous),85.65,0.023675943205919363,15.25,1.44,0.10815,0.067379996,Consumer Defensive
+VST,39.2,32.1,46.4,⚪ Standard (< 0),Live (Unfinished),159.52,0.0006936391242830842,11.28,3.02,0.13766,0.05886,Utilities
+SNPS,28.6,28.6,28.6,⚪ Standard (< 0),Live (Unfinished),506.65,0.0352996133569161,49.444,3.49,0.14521,0.01353,Technology

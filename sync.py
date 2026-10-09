@@ -28,20 +28,25 @@ def main():
         return
 
     print("\n--- 🏦 Portfolio Sync ---")
-    print("Press Enter on any prompt to skip and keep the current value.\n")
     
     # 1. Update Cash
     curr_cash = portfolio.get('CASH', {}).get('qty', 0.0)
-    new_cash = input(f"Current CASH: ${curr_cash:,.2f}\nEnter NEW total Cash balance: ")
-    if new_cash.strip():
-        portfolio['CASH'] = {'qty': float(new_cash.replace('$', '').replace(',', '')), 'cost': 1.00}
-        
+    ans_cash = input(f"Current CASH: ${curr_cash:,.2f} | Did you add or withdraw cash? (y/n): ").strip().lower()
+    if ans_cash == 'y':
+        new_cash = input("Enter NEW total Cash balance: ")
+        if new_cash.strip():
+            portfolio['CASH'] = {'qty': float(new_cash.replace('$', '').replace(',', '')), 'cost': 1.00}
+            print("✅ Cash updated.")
+            
     # 2. Update VOO
     curr_voo = portfolio.get('VOO', {}).get('qty', 0.0)
-    new_voo = input(f"\nCurrent VOO shares: {curr_voo}\nEnter NEW total VOO shares: ")
-    if new_voo.strip():
-        cost = portfolio.get('VOO', {}).get('cost', 0.0)
-        portfolio['VOO'] = {'qty': float(new_voo), 'cost': cost}
+    ans_voo = input(f"\nCurrent VOO shares: {curr_voo} | Did you buy or sell VOO? (y/n): ").strip().lower()
+    if ans_voo == 'y':
+        new_voo = input("Enter NEW total VOO shares: ")
+        if new_voo.strip():
+            cost = portfolio.get('VOO', {}).get('cost', 0.0)
+            portfolio['VOO'] = {'qty': float(new_voo), 'cost': cost}
+            print("✅ VOO updated.")
         
     # 3. Update Individual Stocks (Automated Cost Basis)
     while True:

@@ -1,0 +1,18 @@
+Ticker,Composite_Grade,Valuation_Rank,Quality_Rank,Floor Tier,Status,Close Price,FCF_Yield,EV_EBITDA,NetDebt_EBITDA,Op_Margin,ROA,Sector
+AIG,72.0,100.0,44.1,⚪ Standard (< 0),Live (Unfinished),77.7,0.1812753676225963,4.822,0.0,0.19414,0.01765,Financial Services
+LOPE,72.0,55.9,88.2,⚪ Standard (< 0),Live (Unfinished),160.28,0.04925079688557423,11.021,0.0,0.22023001,0.20431,Consumer Defensive
+T,67.6,82.4,52.9,⚪ Standard (< 0),Confirmed (Previous),24.13,0.06581007298745489,7.127,3.3,0.24786,0.04163,Communication Services
+ASO,66.2,76.5,55.9,⚪ Standard (< 0),Live (Unfinished),53.79,0.051209555318335945,7.128,2.39,0.14956,0.06678,Consumer Cyclical
+FIZZ,64.7,44.1,85.3,🟢 Oversold Floor,Live (Unfinished),32.15,0.043663604536315515,12.247,0.0,0.17686,0.20626,Consumer Defensive
+KR,55.9,79.4,32.4,⚪ Standard (< 0),Live (Unfinished),62.56,0.06862490811023424,7.39,2.8,0.029779999,0.05801,Consumer Defensive
+META,55.8,17.6,94.1,⚪ Standard (< 0),Confirmed (Previous),725.18,0.011387794614088707,17.462,0.2,0.34827,0.14591,Communication Services
+WMG,52.9,38.2,67.6,⚪ Standard (< 0),Live (Unfinished),28.65,0.025505276979774436,11.675,2.57,0.16738,0.07651,Communication Services
+AEO,51.5,76.5,26.5,⚪ Standard (< 0),Live (Unfinished),18.07,0.06960378777374979,8.419,3.11,0.020580001,0.05308,Consumer Cyclical
+ISRG,51.4,14.7,88.2,🟢 Oversold Floor,Live (Unfinished),427.64,0.017310512003823473,34.919,0.0,0.33603,0.10512,Healthcare
+PEGA,51.4,52.9,50.0,⚪ Standard (< 0),Confirmed (Previous),33.25,0.08840715914402858,25.987,0.0,0.046040002,0.0907,Technology
+MAT,47.1,79.4,14.7,⚪ Standard (< 0),Live (Unfinished),16.76,0.08882338759251689,10.729,3.4,0.01323,0.04731,Consumer Cyclical
+TRMB,45.6,44.1,47.1,⚪ Standard (< 0),Confirmed (Previous),57.11,0.04946521478551271,17.176,1.41,0.15134,0.04804,Technology
+GAP,42.6,55.9,29.4,⚪ Standard (< 0),Confirmed (Previous),22.67,0.030789431361812166,7.655,2.2,0.0671,0.0478,Consumer Cyclical
+OLLI,39.7,29.4,50.0,🟢 Oversold Floor,Confirmed (Previous),85.65,0.023300699413399233,15.207,1.44,0.10815,0.067379996,Consumer Defensive
+VST,38.2,29.4,47.1,⚪ Standard (< 0),Live (Unfinished),158.13,0.000699495073333483,11.381,3.02,0.13766,0.05886,Utilities
+SNPS,25.0,23.5,26.5,⚪ Standard (< 0),Live (Unfinished),502.51,0.03557182058646113,49.883,3.49,0.14521,0.01353,Technology

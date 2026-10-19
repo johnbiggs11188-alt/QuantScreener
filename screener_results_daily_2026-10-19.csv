@@ -1,0 +1,9 @@
+Ticker,Composite_Grade,Valuation_Rank,Quality_Rank,Floor Tier,Status,Close Price,FCF_Yield,EV_EBITDA,NetDebt_EBITDA,Op_Margin,ROA,Sector
+SNDK,81.2,62.5,100.0,🟢 Strong Green (< -60),Live Strong Dot (Today),1371.12,0.03896192003975193,14.717,0.0,0.78472,0.43910998,Technology
+HL,75.0,68.8,81.2,🟢 Strong Green (< -60),Live Strong Dot (Today),15.05,0.03386160713607469,10.123,0.0,0.4427,0.15305,Basic Materials
+WFRD,71.9,100.0,43.8,🟢 Strong Green (< -60),Posted Strong Dot (Yesterday),76.19,0.10121773570396347,6.442,0.56,0.10498,0.07896,Energy
+CDE,71.8,87.5,56.2,🟢 Strong Green (< -60),Posted Strong Dot (Yesterday),15.47,0.05056043527842032,9.551,0.0,0.19387,0.07143,Basic Materials
+ENPH,40.6,43.8,37.5,🟢 Strong Green (< -60),Posted Strong Dot (Yesterday),30.62,0.019350463920459936,19.406,0.0,0.17981,0.023759998,Technology
+BEN,37.5,37.5,37.5,🟢 Strong Green (< -60),Posted Strong Dot (Yesterday),30.98,-0.1916845913773036,10.73,0.5,0.12979001,0.02638,Financial Services
+CFFN,37.5,25.0,50.0,🟢 Strong Green (< -60),Posted Strong Dot (Yesterday),8.17,0.0,100.0,999.0,0.50087,0.00856,Financial Services
+STT,34.4,25.0,43.8,🟢 Strong Green (< -60),Live Strong Dot (Today),165.43,0.0,100.0,999.0,0.34631002,0.00952,Financial Services

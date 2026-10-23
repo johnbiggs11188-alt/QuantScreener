@@ -1,0 +1,15 @@
+Ticker,Composite_Grade,Valuation_Rank,Quality_Rank,Floor Tier,Status,Close Price,FCF_Yield,EV_EBITDA,NetDebt_EBITDA,Op_Margin,ROA,Sector
+AROC,80.4,78.6,82.1,🟢 Strong Green (< -60),Posted Strong Dot (Yesterday),29.77,0.04847563275749956,8.588,2.76,0.35931998,0.08123,Energy
+CBT,78.6,89.3,67.9,🟢 Strong Green (< -60),Live Strong Dot (Today),74.33,0.06729233356040072,6.803,1.41,0.14257,0.088970006,Basic Materials
+MTX,69.6,92.9,46.4,🟢 Strong Green (< -60),Posted Strong Dot (Yesterday),63.23,0.1969683219817675,6.94,1.62,0.13603,0.051620003,Basic Materials
+VRT,67.8,57.1,78.6,🟢 Strong Green (< -60),Posted Strong Dot (Yesterday),212.15,0.035810672285107474,28.195,0.08,0.20362,0.10889,Industrials
+VRTS,66.1,96.4,35.7,🟢 Strong Green (< -60),Posted Strong Dot (Yesterday),119.39,0.06947222393355196,6.133,1.12,0.117910005,0.01987,Financial Services
+ETN,59.0,53.6,64.3,🟢 Strong Green (< -60),Posted Strong Dot (Yesterday),393.94,0.021673304121833294,24.701,3.11,0.16563,0.07052,Industrials
+SKY,57.2,71.4,42.9,🟢 Strong Green (< -60),Posted Strong Dot (Yesterday),75.73,0.04257446338184769,12.839,0.0,0.08486,0.06903,Consumer Cyclical
+IBOC,50.0,25.0,75.0,🟢 Strong Green (< -60),Live Strong Dot (Today),67.28,0.0,100.0,999.0,0.60488,0.02468,Financial Services
+BIO,44.7,60.7,28.6,🟢 Strong Green (< -60),Posted Strong Dot (Yesterday),360.5,0.029136533440867807,21.477,0.0,0.111829996,0.01663,Healthcare
+MUFG,39.3,25.0,53.6,🟢 Strong Green (< -60),Posted Strong Dot (Yesterday),21.77,0.0,100.0,999.0,0.45599997,0.0051499996,Financial Services
+BAC,37.5,25.0,50.0,🟢 Strong Green (< -60),Posted Strong Dot (Yesterday),50.78,0.0,100.0,999.0,0.31256,0.00944,Financial Services
+SMFG,35.7,25.0,46.4,🟢 Strong Green (< -60),Posted Strong Dot (Yesterday),24.52,0.0,100.0,999.0,0.40895998,0.00422,Financial Services
+NMR,34.0,25.0,42.9,🟢 Strong Green (< -60),Posted Strong Dot (Yesterday),9.22,0.0,100.0,999.0,0.30805,0.0067000003,Financial Services
+ARM,30.4,25.0,35.7,🟢 Strong Green (< -60),Posted Strong Dot (Yesterday),226.59,0.005947326952036536,207.75,0.0,0.07603,0.05415,Technology
